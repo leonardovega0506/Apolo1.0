@@ -13,7 +13,7 @@ export class ReciboGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if(this.login.isLoggedIn() && this.login.getUserRoles() == 'RECIBO' ||  this.login.getUserRoles() == 'ADMIN'){
+      if(this.login.isLoggedIn() && this.login.getUserRoles() == 'ROLE_RECIBO' ||  this.login.getUserRoles() == 'ROLE_ADMIN'){
         return true;
       }
       this.router.navigate(['login']);

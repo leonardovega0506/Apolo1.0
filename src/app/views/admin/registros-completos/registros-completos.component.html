@@ -1,0 +1,61 @@
+<div class="container">
+  <br>
+  <br>
+  <br>
+  <br>
+  <div>
+    <button type="button" class="btn btn-success">Crear Registro</button>
+  </div>
+  <br>
+  <br>
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Numero de Orden</th>
+          <th scope="col">Estatus</th>
+          <th scope="col">Accion</th>
+        </tr>
+        <tr *ngFor="let registro of registros">
+          <td>{{registro.idRegistro}}</td>
+          <td>{{registro.estatus}}</td>
+          <td><button class="btn btn-warning">Detalles</button></td>
+        </tr>
+      </thead>
+      <tbody>
+  
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container"> 
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialogo1">Abrir ventana de diálogo</button>
+
+  <div class="modal fade" id="dialogo1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- cabecera del diálogo -->
+        <div class="modal-header">
+          <h4 class="modal-title">Título del diálogo</h4>
+          <button type="button" class="close" data-dismiss="modal">X</button>
+        </div>
+  
+        <!-- cuerpo del diálogo -->
+        <div class="modal-body">
+          Contenido del diálogo.
+        </div>
+  
+        <!-- pie del diálogo -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+  
+      </div>
+    </div>
+  </div> 
+
+</div>
+
+

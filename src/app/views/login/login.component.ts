@@ -34,19 +34,19 @@ export class LoginComponent implements OnInit {
           (user: any) => {
             this.login.setUser(user);
             console.log(user);
-            if (this.login.getUserRoles() == "ADMIN") {
+            if (this.login.getUserRoles() == "ROLE_ADMIN") {
               this.router.navigate(['admin']);
             }
-            else if (this.login.getUserRoles() == 'ALMACEN') {
+            else if (this.login.getUserRoles() == 'ROLE_ALMACEN') {
               this.router.navigate(['almacen']);
             }
-            else if (this.login.getUserRoles() == 'COMPRAS') {
+            else if (this.login.getUserRoles() == 'ROLE_COMPRAS') {
               this.router.navigate(['compras']);
             }
-            else if (this.login.getUserRoles() == 'FOTO') {
+            else if (this.login.getUserRoles() == 'ROLE_FOTO') {
               this.router.navigate(['foto']);
             }
-            else if (this.login.getUserRoles() == "RECIBO") {
+            else if (this.login.getUserRoles() == "ROLE_RECIBO") {
               this.router.navigate(['recibo']);
             }
             else{

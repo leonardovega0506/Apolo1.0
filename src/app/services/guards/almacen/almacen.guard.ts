@@ -13,7 +13,7 @@ export class AlmacenGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if(this.login.isLoggedIn() && this.login.getUserRoles() == 'ALMACEN' || this.login.getUserRoles() == 'ADMIN'){
+      if(this.login.isLoggedIn() && this.login.getUserRoles() == 'ROLE_ALMACEN' || this.login.getUserRoles() == 'ROLE_ADMIN'){
         return true;
       }
       this.router.navigate(['login']);
