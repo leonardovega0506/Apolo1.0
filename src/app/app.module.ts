@@ -21,6 +21,10 @@ import { NavbarComponent } from './views/admin/navbar/navbar.component';
 import { OrdenesAdminComponent } from './views/admin/ordenes-admin/ordenes-admin.component';
 import { ItemAdminComponent } from './views/admin/item-admin/item-admin.component';
 import { UsuariosComponent } from './views/admin/usuarios/usuarios.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RegistrosDetallesCompletosComponent } from './views/admin/registros-detalles-completos/registros-detalles-completos.component';
+import { AsignarProductoAdminComponent } from './views/admin/asignar-producto-admin/asignar-producto-admin.component';
+import { AgregarItemComponent } from './views/admin/agregar-item/agregar-item.component';
 
 
 
@@ -39,13 +43,17 @@ import { UsuariosComponent } from './views/admin/usuarios/usuarios.component';
     NavbarComponent,
     OrdenesAdminComponent,
     ItemAdminComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    RegistrosDetallesCompletosComponent,
+    AsignarProductoAdminComponent,
+    AgregarItemComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

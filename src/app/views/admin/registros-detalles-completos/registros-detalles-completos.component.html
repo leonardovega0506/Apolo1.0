@@ -1,0 +1,17 @@
+<div>
+    <button routerLink="/admin/registros" class="btn btn-warning">Regresar</button>
+</div>
+<div class="container">
+    <div class="row">
+        <h1>Detalle del Registro</h1>
+        <div><h5>Fecha y Hora de Llegada de Mercancia</h5><span>{{registro?.dateReciboOCLlegada}} ( {{registro?.timeReciboOCLlegada}} )</span></div>
+        <div><h5>Fecha y Hora de Muestra Mandada a Compras</h5><span>{{registro?.dateReciboMuestraM}} ( {{registro?.timeReciboMuestraM}} )</span></div>
+        <div><h5>Fecha y hora de Muestra Mandada a Foto</h5><span>{{registro?.dateCompraMuestraF}} ( {{registro?.timeCompraMuestraF}} )</span></div>
+        <div><h5>Fecha y Hora de Muestra Fotografiada</h5><span>{{registro?.dateFoto}} ( {{registro?.timeFotoT}} )</span></div>
+        <div><h5>Fecha y Hora de Muestra Liberada</h5><span>{{registro?.dateCompraMuestraL}} ( {{registro?.timeCompraMuestraL}} )</span></div>
+        <div><h5>Fecha y Hora de Orden Liberada</h5><span>{{registro?.dateReciboL}} ( {{registro?.timeReciboL}} )</span></div>
+        <div><h5>Fecha y Hora de Mercancia en Transito</h5><span>{{registro?.date_Transito}} ( {{registro?.timeTransito}} )</span></div>
+        <div><h5>Fecha yHora de Mercancia en Alamcen</h5><span>{{registro?.date_Almacen}} ( {{registro?.timeAlmacen}} )</span></div>    
+        <div><h5>Estatus</h5><span>{{registro?.estatus}}</span></div>    
+    </div>
+</div>

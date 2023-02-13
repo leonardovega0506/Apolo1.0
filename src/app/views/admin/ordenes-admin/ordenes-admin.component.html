@@ -1,34 +1,137 @@
 <div class="container">
-    <br>
-    <br>
-    <br>
-    <br>
-    <div>
-      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modal1">Crear Registro</button>
-    </div>
-    <br>
-    <br>
-    <div class="row">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Numero de Orden</th>
-            <th scope="col">Numero de Entrada</th>
-            <th scope="col">Total</th>
-            <th scope="col">Fecha</th>
-          </tr>
-          <tr *ngFor="let orden of ordenes">
-            <td>{{orden.docNum}}</td>
-            <td>{{orden.docEntry}}</td>
-            <td>{{orden.docTotal}}</td>
-            <td>{{orden.docDate}}</td>
-            <td><button class="btn btn-warning">Detalles</button></td>
-          </tr>
-        </thead>
-        <tbody>
-    
-        </tbody>
-      </table>
-    </div>
-  
+  <br>
+  <br>
+  <br>
+  <br>
+  <div>
+    <button type="button" class="btn btn-success" (click)="openCreateOrder(ordenNueva)">Crear Orden</button>
+    &nbsp;&nbsp;
+    <button type="button" class="btn btn-danger" (click)="openBuscarOrder(buscarOrden)">Buscar Orden</button>
   </div>
+  <br>
+  <br>
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Numero de Orden</th>
+          <th scope="col">Numero de Entrada</th>
+          <th scope="col">Total</th>
+          <th scope="col">Fecha</th>
+        </tr>
+        <tr *ngFor="let orden of ordenes">
+          <td>{{orden.docNum}}</td>
+          <td>{{orden.docEntry}}</td>
+          <td>{{orden.docTotal}}</td>
+          <td>{{orden.docDate}}</td>
+          <td><button class="btn btn-warning">Detalles</button></td>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br>
+<br>
+<!--OrdenTraida-->
+<div *ngIf="orden !=null">
+  <h2>Orden Traida</h2>
+  <hr>
+  <div>
+    <h5>Numero de Orden</h5>
+    <span>{{orden?.docNum}}</span>
+  </div>
+  <div>
+    <h5>Numero de Entrada</h5>
+    <span>{{orden?.docEntry}}</span>
+  </div>
+  <div>
+    <h5>Total de la Orden</h5>
+    <span>{{orden?.docTotal}}</span>
+  </div>
+  <div>
+    <h5>Fecha de la Orden</h5>
+    <span>{{orden?.docDate}}</span>
+  </div>
+  <div>
+    <h5>Nombre del Proveedor</h5>
+    <span>{{orden?.cardName}}</span>
+  </div>
+  <div>
+    <h5>Nombre del Proveedor</h5>
+    <a type="button" [routerLink]="'/admin/asignarProducto/'+orden?.idOrdenCompra">Asignar Productos</a>
+    &nbsp;
+    <button>Detalles</button>
+  </div>
+</div>
+<!--Cerrar OrdenTraida-->
+<!--Ventana Modal Crear Orden-->
+<ng-template #ordenNueva let-modal>
+  <form (ngSubmit)="crearOrden()">
+    <div class="modal-header">
+      <h4 class="modal-title">Titulo Modal</h4>
+      <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="col">
+        <label for="ejemplo">Numero de Entrada</label>
+        <input type="text" [(ngModel)]="ordenData.docEntry" class="form-control" name="docEntry"
+          placeholder="Numero de Entrada">
+      </div>
+      <div class="col">
+        <label for="ejemplo">Numero de Orden</label>
+        <input type="text" [(ngModel)]="ordenData.docNum" class="form-control" name="docNum"
+          placeholder="Numero de Orden">
+      </div>
+      <div class="col">
+        <label for="ejemplo">Fecha de la Orden</label>
+        <input type="text" [(ngModel)]="ordenData.docDate" class="form-control" name="docDate" placeholder="Fecha">
+      </div>
+      <div class="col">
+        <label for="ejemplo">Hora de la Orden</label>
+        <input type="text" [(ngModel)]="ordenData.docTime" class="form-control" name=docTime
+          placeholder="Orden de la orden">
+      </div>
+      <div class="col">
+        <label for="ejemplo">Total de la orden</label>
+        <input type="text" [(ngModel)]="ordenData.docTotal" class="form-control" name="docTotal"
+          placeholder="Total de la orden">
+      </div>
+      <div class="col">
+        <label for="ejemplo">Nombre del Proveedor</label>
+        <input type="text" [(ngModel)]="ordenData.cardName" class="form-control" name="cardName"
+          placeholder="Nombre del proveedor">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-success">Guardar Orden</button>
+      <button type="button" class="btn btn-danger" (click)="modal.close()">Cerrar</button>
+    </div>
+  </form>
+</ng-template>
+<!--Cerrar Ventana Modal Crear Orden-->
+<!--Ventana Modal Buscar Orden-->
+<ng-template #buscarOrden let-modal>
+  <form (ngSubmit)="buscarOrder()">
+    <div class="modal-header">
+      <h4 class="modal-title">Titulo Modal</h4>
+      <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="col">
+        <label for="ejemplo">Numero de Entrada</label>
+        <input type="text" [(ngModel)]="ordenData.docEntry" class="form-control" name="docEntry"
+          placeholder="Numero de Entrada">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-success">Buscar</button>
+    </div>
+  </form>
+</ng-template>
+<!--Cerrar Ventana Modal Buscar Orden-->

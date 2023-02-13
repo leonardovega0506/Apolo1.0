@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AndService } from 'src/app/services/api/and.service';
 
 @Component({
@@ -9,6 +11,10 @@ import { AndService } from 'src/app/services/api/and.service';
 export class RegistrosCompletosComponent implements OnInit{
 
   registros:any=[];
+
+  verificacion:boolean = true;
+
+  numeroEntrada?:any=0;
 
   ngOnInit(): void {
     this.anandaService.listarRegistros().subscribe(
@@ -21,6 +27,28 @@ export class RegistrosCompletosComponent implements OnInit{
     )
   }
 
-  constructor(private anandaService:AndService){}
+  constructor(private anandaService:AndService,private modal:NgbModal,private router:Router){}
 
+  open(contenido) {
+    this.modal.open(contenido, { centered: true });
+  }
+  showData() {
+    return this.verificacion = true;
+  }
+  hideData() {
+    return this.verificacion = false;
+
+  }
+  generarRegistro(){
+    this.anandaService.crearRegistro(this.numeroEntrada).subscribe(
+      (data:any) =>{
+        console.log(data);
+        this.modal.dismissAll();
+        this.ngOnInit();
+      },
+      (error) =>{
+        console.log(error);
+      }
+    );
+  }
 }
