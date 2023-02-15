@@ -47,6 +47,9 @@ export class AndService {
   public crearOrden(form:any){
     return this.http.post(this.baseAnd+"/ordenes",form);
   }
+  public crearUsuario(form:any){
+    return this.http.post(this.baseAnd+"/auth/usuario?rol="+form.area,form);
+  }
   public agregarItemR(itemCode:any,cantidad:any,precio:any,id:any){
     return this.http.post(this.baseAnd+"/ordenes/agregarItemR/"+id+"?itemCode="+itemCode+"&precio="+precio+"&cantidad="+cantidad,id);
   }
@@ -55,5 +58,14 @@ export class AndService {
   }
   public crearItem(formItem:any){
     return this.http.post(this.baseAnd+"/items",formItem);
+  }
+  public actualizarItem(formItem:any){
+    return this.http.put(this.baseAnd+"/items",formItem);
+  }
+  public generarTiempoAlmacen(idRegistro:any){
+    return this.http.put(this.baseAnd+"/registros/almacen/"+idRegistro,idRegistro);
+  }
+  public generarTiempoFoto(idRegistro:any){
+    return this.http.put(this.baseAnd+"/registros/foto-t/"+idRegistro,idRegistro);
   }
 }

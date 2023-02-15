@@ -1,0 +1,26 @@
+<div class="container">
+  <br>
+  <br>
+    <h2>Items</h2>
+  <br>
+  <br>
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Codigo</th>
+          <th scope="col">Descripcion</th>
+          <th>Detalle</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let item of items">
+        <tr>
+            <td>{{item.itemCode}}</td>
+            <td>{{item.itemName}}</td>
+            <td><button>Detalle</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

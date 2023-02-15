@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AndService } from 'src/app/services/api/and.service';
 
 @Component({
@@ -9,8 +10,15 @@ import { AndService } from 'src/app/services/api/and.service';
 export class UsuariosComponent implements OnInit{
 
   users:any=[];
+  usuarioData={
+    username:'',
+    password:'',
+    nombre:'',
+    area:'',
+  }
 
-  constructor(private andService:AndService){}
+
+  constructor(private andService:AndService,private modal:NgbModal){}
 
   ngOnInit(): void {
     this.andService.listaUsuarios().subscribe(
@@ -22,5 +30,18 @@ export class UsuariosComponent implements OnInit{
       }
     );
   }
-
+  open(usuarioNuevo) {
+    this.modal.open(usuarioNuevo, { size: 'lg' });
+  }
+  crearUsuario(){
+    this.andService.crearUsuario(this.usuarioData).subscribe(
+      (data) =>{
+       this.ngOnInit();
+       this.modal.dismissAll();
+      },
+      (error) =>{
+        console.log(error);
+      }
+      );
+  }
 }

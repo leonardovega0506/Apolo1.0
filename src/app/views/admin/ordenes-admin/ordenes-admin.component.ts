@@ -43,6 +43,7 @@ export class OrdenesAdminComponent implements OnInit{
       },
       (error) =>{
         console.log(error);
+        alert(" existe la orden de compra");
         this.modal.dismissAll();
       }
     )

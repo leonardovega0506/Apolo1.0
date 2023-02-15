@@ -4,7 +4,7 @@
     <br>
     <br>
     <div>
-      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modal1">Crear Registro</button>
+      <button type="button" class="btn btn-success" (click)="open(usuarioNuevo)">Crear Registro</button>
     </div>
     <br>
     <br>
@@ -22,7 +22,6 @@
             <td>{{user.nombre}}</td>
             <td>{{user.area}}</td>
             <td>{{user.enabled ? "Activo":"Inactivo"}}</td>
-            <td><button class="btn btn-warning">Detalles</button></td>
           </tr>
         </thead>
         <tbody>
@@ -30,5 +29,45 @@
         </tbody>
       </table>
     </div>
-  
   </div>
+  <!--Ventana Modal Crear Orden-->
+<ng-template #usuarioNuevo let-modal>
+  <form (ngSubmit)="crearUsuario()">
+    <div class="modal-header">
+      <h4 class="modal-title">Titulo Modal</h4>
+      <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="col">
+        <label for="ejemplo">Nombre de Usuario</label>
+        <input type="text" [(ngModel)]="usuarioData.nombre" class="form-control" name="nombre"
+          placeholder="Nombre de Usuario">
+      </div>
+      <div class="col">
+        <label for="ejemplo">Usuario</label>
+        <input type="text" [(ngModel)]="usuarioData.username" class="form-control" name="username"
+          placeholder="usuario">
+      </div>
+      <div class="col">
+        <label for="ejemplo">Contraseña</label>
+        <input type="password" [(ngModel)]="usuarioData.password" class="form-control" name="docDate" placeholder="password">
+      </div>
+      <div class="col">
+        <label for="area">Area</label>
+        <select class="form-control" name="area" id="area" [(ngModel)]="usuarioData.area">
+          <option>ADMIN</option>
+          <option>ALMACEN</option>
+          <option>COMPRAS</option>
+          <option>FOTO</option>
+          <option>RECIBO</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-success">Guardar Orden</button>
+      <button type="button" class="btn btn-danger" (click)="modal.close()">Cerrar</button>
+    </div>
+  </form>
+</ng-template>

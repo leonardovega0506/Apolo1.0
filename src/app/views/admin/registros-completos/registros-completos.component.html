@@ -16,13 +16,13 @@
           <th scope="col">Estatus</th>
           <th scope="col">Accion</th>
         </tr>
+      </thead>
+      <tbody>
         <tr *ngFor="let registro of registros">
           <td>{{registro.idRegistro}}</td>
           <td>{{registro.estatus}}</td>
           <td><button type="button" [routerLink]="'/admin/detalleRegistros/'+registro.idRegistro" class="btn btn-warning">Detalles</button></td>
         </tr>
-      </thead>
-      <tbody>
       </tbody>
     </table>
   </div>

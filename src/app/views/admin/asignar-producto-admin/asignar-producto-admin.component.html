@@ -2,11 +2,33 @@
   <h2>Orden Traida</h2>
   <hr>
   <div>
-    <h5>Numero de Orden</h5>
-    <span>{{orden?.docNum}}</span>
+    <div>
+      <h5>Numero de Orden</h5>
+      <span>{{orden?.docNum}}</span>
+    </div>
+    <div>
+      <h5>Numero de Entrada</h5>
+      <span>{{orden?.docEntry}}</span>
+    </div>
+    <div>
+      <h5>Total de la Orden</h5>
+      <span>{{orden?.docTotal}}</span>
+    </div>
+    <div>
+      <h5>Fecha de la Orden</h5>
+      <span>{{orden?.docDate}}</span>
+    </div>
+    <div>
+      <h5>Nombre del Proveedor</h5>
+      <span>{{orden?.cardName}}</span>
+    </div>
+    <div>
+      <a type="button" (click)="asignarProductos()">AsignarProductos</a>
+      <button (click)="regresar()">Regresar</button>
+    </div>
   </div>
 </div>
-<div class="container">
+<div class="container" *ngIf="asignacion== true">
   <br>
   <br>
   <h1>Items</h1>

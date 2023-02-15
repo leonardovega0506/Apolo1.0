@@ -875,7 +875,15 @@ export class AgregarItemComponent implements OnInit{
       
   ngOnInit(): void {}
 
+
+  regresar(){
+    this.router.navigate(['admin/items']);
+  }
   guardarItem(){
+    if(this.itemData.itemCode==null || this.itemData.itemCode=="" || this.itemData.itemCode == "0" || this.itemData.itemName==null || this.itemData.itemName=="" || this.itemData.itemCode == "0" || this.itemData.ncmCode==null || this.itemData.ncmCode=="" || this.itemData.ncmCode == "0"  ){
+      alert("Verifique que estan ingresados los campos");
+    }
+    else{
     this.andService.crearItem(this.itemData).subscribe(
       (data) =>{
         this.router.navigate(['admin/items']);
@@ -884,4 +892,6 @@ export class AgregarItemComponent implements OnInit{
         console.log(error);
       }
     );
-}}
+    }
+}
+}

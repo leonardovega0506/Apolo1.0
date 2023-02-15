@@ -1,0 +1,62 @@
+<div class="container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <div>
+      <button type="button" class="btn btn-success" (click)="open(contenido)">Crear Registro</button>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Estatus</th>
+            <th scope="col">Accion</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let registro of registros">
+          <tr *ngIf="registro.estatus == 'Llegada a Recibo' || registro.estatus == 'Muestra Liberada' || registro.estatus == 'Mercancia Liberada en Recibo' || registro.estatus == 'Llegada a Recibo,Con Orden?'">
+            <td>{{registro.idRegistro}}</td>
+            <td>{{registro.estatus}}</td>
+            <td><button type="button" [routerLink]="'/recibo/detalleRegistros/'+registro.idRegistro" class="btn btn-warning">Acciones</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  
+  
+  <!--Modal Crear Registro-->
+  <ng-template #contenido let-modal>
+    <form (ngSubmit)="generarRegistro()">
+    <div class="modal-header">
+        <h4 class="modal-title">Crear Registro</h4>
+        <button class="btn close" aria-label="close" type="button" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+  
+      <p>¿Cuenta con numero de Orden?</p>
+      <p>
+        <input type="radio" name="verificacion" value="Si" id="positivo" (click)="showData()">Sí
+        <input type="radio" name="verificacion" value="No" id="negativo" (click)="hideData()">No
+      </p>
+      <div *ngIf="verificacion == true">
+        <input type="text" [(ngModel)]="numeroEntrada" name="numeroEntrada" placeholder="Numero de Entrada" class="form-control mr-sm-2">
+      </div> 
+    </div>
+    
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success">Generar</button>
+        <button type="button" class="btn btn-warning" (click)="modal.close()">Cerrar</button>
+    </div>
+    </form>
+  </ng-template>
+  <!--/Modal Crear Registro-->
+  
+  

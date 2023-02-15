@@ -1,0 +1,37 @@
+<div class="container">
+  <br>
+  <br>
+  <br>
+  <br>
+  <div>
+
+  </div>
+  <br>
+  <br>
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Estatus</th>
+          <th scope="col">Fecha Pendiente de Foto</th>
+          <th scope="col">Hora Pendiente de Foto</th>
+          <th scope="col">Fecha Foto Tomada</th>
+          <th scope="col">Hora Foto Tomada</th>
+          <th scope="col">Accion</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let registro of registros">
+        <tr *ngIf="registro.estatus == 'Pendiente de Foto' || registro.estatus == 'Foto Tomada'">
+            <td>{{registro.idRegistro}}</td>
+            <td>{{registro.estatus}}</td>
+            <td>{{registro.dateCompraMuestraF}}</td>
+            <td>{{registro.timeCompraMuestraF}}</td>
+            <td>{{registro.dateFoto}}</td>
+            <td>{{registro.timeFotoT}}</td>
+          <td><button (click)="accionesRegistro(registro.idRegistro)">Acciones</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

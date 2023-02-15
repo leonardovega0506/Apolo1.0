@@ -1,0 +1,13 @@
+<div class="container">
+    <p>Orden de Compra</p>
+    <p>{{registro?.ordenCompra.docNum}}</p>
+    <p>Estatus</p>
+    <p>{{registro?.estatus}}</p>
+    <div *ngIf="registro?.estatus == 'Pendiente de Foto'">
+        <button (click)="generarAccion(registro?.idRegistro)">Registrar Tiempo Foto Tomada</button>
+    </div>
+    <div *ngIf="registro?.estatus == 'Foto Tomada'">
+        <p>Ya se ha terminado el Proceso</p>
+    </div>
+
+</div>

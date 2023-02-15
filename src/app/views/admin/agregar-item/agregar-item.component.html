@@ -1,6 +1,5 @@
-
 <div class="container bg-light">
-    <div class="row">>
+    <div class="row">
   <form (ngSubmit)="guardarItem()">
     <div class="border border-dark rounded" style="padding: 20px;">
         <div class="form-group">
@@ -9,7 +8,7 @@
         </div>
         <div class="form-group">
           <label for="itemName">Nombre de Item</label>
-          <input type="text" class="form-control" id="itemName" placeholder="Nombre del Producto" [(ngModel)]="itemData.itemName" name="itemName">
+          <input type="text" class="form-control" id="itemName" placeholder="Nombre del Producto" required [(ngModel)]="itemData.itemName" name="itemName">
         </div>
         <div class="form-group">
           <label for="ncmCode">Codigo del SAT</label>
@@ -429,7 +428,7 @@
       <br>
       <br>
       <button type="submit" class="btn btn-success">Guardar</button>
-
+      <button type="button" (click)="regresar()">Regresar</button>
   </form>
   <br><br>
 </div>

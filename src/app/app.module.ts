@@ -25,6 +25,20 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegistrosDetallesCompletosComponent } from './views/admin/registros-detalles-completos/registros-detalles-completos.component';
 import { AsignarProductoAdminComponent } from './views/admin/asignar-producto-admin/asignar-producto-admin.component';
 import { AgregarItemComponent } from './views/admin/agregar-item/agregar-item.component';
+import { DetalleProductoComponent } from './views/admin/detalle-producto/detalle-producto.component';
+import { SidebarAlmacenComponent } from './views/almacen/sidebar-almacen/sidebar-almacen.component';
+import { RegistrosAlmacenComponent } from './views/almacen/registros-almacen/registros-almacen.component';
+import { ProductosAlmacenComponent } from './views/almacen/productos-almacen/productos-almacen.component';
+import { AccionesRegistroComponent } from './views/almacen/acciones-registro/acciones-registro.component';
+import { RegistroFotoComponent } from './views/foto/registro-foto/registro-foto.component';
+import { SidebarFotoComponent } from './views/foto/sidebar-foto/sidebar-foto.component';
+import { ItemsFotoComponent } from './views/foto/items-foto/items-foto.component';
+import { AccionesFotoComponent } from './views/foto/acciones-foto/acciones-foto.component';
+import { DetalleItemFotoComponent } from './views/foto/detalle-item-foto/detalle-item-foto.component';
+import { SidebarReciboComponent } from './views/recibo/sidebar-recibo/sidebar-recibo.component';
+import { RegistrosReciboComponent } from './views/recibo/registros-recibo/registros-recibo.component';
+import { ItemsReciboComponent } from './views/recibo/items-recibo/items-recibo.component';
+
 
 
 
@@ -46,7 +60,20 @@ import { AgregarItemComponent } from './views/admin/agregar-item/agregar-item.co
     UsuariosComponent,
     RegistrosDetallesCompletosComponent,
     AsignarProductoAdminComponent,
-    AgregarItemComponent
+    AgregarItemComponent,
+    DetalleProductoComponent,
+    SidebarAlmacenComponent,
+    RegistrosAlmacenComponent,
+    ProductosAlmacenComponent,
+    AccionesRegistroComponent,
+    RegistroFotoComponent,
+    SidebarFotoComponent,
+    ItemsFotoComponent,
+    AccionesFotoComponent,
+    DetalleItemFotoComponent,
+    SidebarReciboComponent,
+    RegistrosReciboComponent,
+    ItemsReciboComponent
   ],
   imports: [
     BrowserModule,

@@ -20,6 +20,7 @@ export class AsignarProductoAdminComponent implements OnInit{
   verificacion=false;
   itemTraido?:any;
   errorMsg?:any;
+  asignacion:boolean=false;
 
   constructor(private andService:AndService,private aRoute:ActivatedRoute, private router:Router,private modal:NgbModal){}
 
@@ -83,9 +84,15 @@ export class AsignarProductoAdminComponent implements OnInit{
 
       },
       (error) =>{
-        console.log(error);
-        this.errorMsg == "Error";
+        this.errorMsg== error.mensaje;
+        alert("No existe ese articulo");
       }
     );
+  }
+  asignarProductos(){
+      this.asignacion=true;
+  }
+  regresar(){
+    this.router.navigate(['admin/ordenes']);
   }
 }
