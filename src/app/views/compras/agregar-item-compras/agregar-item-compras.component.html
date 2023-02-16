@@ -1,0 +1,434 @@
+<div class="container bg-light">
+    <div class="row">
+  <form (ngSubmit)="guardarItem()">
+    <div class="border border-dark rounded" style="padding: 20px;">
+        <div class="form-group">
+          <label for="itemCode">Numero de Item</label>
+          <input type="text" class="form-control" id="itemCode" placeholder="Numero del Codigo" required [(ngModel)]="itemData.itemCode" name="itemcode">
+        </div>
+        <div class="form-group">
+          <label for="itemName">Nombre de Item</label>
+          <input type="text" class="form-control" id="itemName" placeholder="Nombre del Producto" required [(ngModel)]="itemData.itemName" name="itemName">
+        </div>
+        <div class="form-group">
+          <label for="ncmCode">Codigo del SAT</label>
+          <input type="text" class="form-control" id="itemName" placeholder="Nombre del Producto" [(ngModel)]="itemData.ncmCode" name="ncmCode">
+        </div>
+      </div>
+      <br>
+      <!--<div class="row">
+        <div class="form-group col-sm-2">
+          <label for="vatLiable">Sujeto a Impuesto</label> &nbsp;
+          <input type="checkbox" class="form-check-input" id="vatLiable">
+        </div>
+        <div class="form-group col-sm-2">
+          <label for="taxVariable">IEPS</label> &nbsp;
+          <input type="checkbox" class="form-check-input" id="taxVariable">
+        </div>     
+        <div class="form-group col-sm-2">
+          <label for="taxType">Clase de Impuesto</label>&nbsp;
+          <input type="checkbox" class="form-check-input" id="taxType">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="form-group col-md-2">
+          <label for="itemType">Clase de Articulo</label>
+          <input type="text" class="form-control col-md-2" id="itemType" placeholder="Clase de Articulo"
+            formControlName="itemType">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="cardCode">Proveedor</label>
+          <input type="text" class="form-control" id="cardCode" placeholder="Proveedor">
+        </div>
+        <div class="form-group col-md-2">
+          <label for="itemsGrpCode">Grupo de Articulo</label>
+        </div>
+      </div>  
+      <br>
+      <div class="row">
+        <div class="form-group col-md-2">
+          <label for="sVolume">Volumen Venta</label>
+          <input type="text" class="form-control col-md-2" id="sVolume" placeholder="Volumen Venta">
+        </div>
+        <div class="form-group col-md-2">
+          <label for="sWeight1">Peso Venta</label>
+          <input type="text" class="form-control col-md-2" id="sWeight1" placeholder="Peso Venta">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="sWght1Unit">Peso 1: Unidad de medidas de venta</label>
+          <input type="text" class="form-control col-md-2" id="sWght1Unit" placeholder="Unidad de medidas de venta">
+        </div>
+        <div class="form-group col-md-2">
+          <label for="iWeight1">Peso 1: Inventario</label>
+          <input type="text" class="form-control col-md-2" id="iWeight1" placeholder="Peso 1: Inventario">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="form-group col-md-2">
+          <label for="numInSale">Cantidad de artículos por unidad de medida</label>
+          <input type="text" class="form-control col-md-2" id="numInSale" placeholder="Cantidad de articulos">
+        </div>
+        <div class="form-group col-md-2">
+          <br>
+          <label for="planingSys">Método de planificación</label>
+          <input type="text" class="form-control col-md-2" id="planingSys" placeholder="Metodo">
+        </div>
+        <div class="form-group col-md-4">
+          <br>
+          <label for="prcrmntMtd">Método aprovisonamiento</label>
+          <input type="text" class="form-control col-md-2" id="prcrmntMtd" placeholder="Metodo">
+        </div>
+        <div class="form-group col-md-2">
+          <br>
+          <label for="codeBars">Codigo de Barras</label>
+          <input type="text" class="form-control col-md-2" id="codeBars" placeholder="Codigo de Barras">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-2">
+          <br>
+          <label for="uClasifStore">Clasificacion Store</label>
+
+        </div>
+        <div class="form-group col-md-4">
+          <br>
+          <label for="uCode">Nombre Clasificacion</label>
+
+        </div>
+        <div class="form-group col-md-2">
+          <label for="salUnitMsr">Unidad de Medida de Ventas</label>
+          <input type="text" class="form-control col-md-2" id="salUnitMsr" placeholder="Unidad de medida">
+        </div>
+        <div class="form-group col-md-2">
+          <label for="salPackUn">Cantidad por Empaque( ventas )</label>
+          <input type="text" class="form-control col-md-2" id="salPackUn" placeholder="Cantidad por Empaque V">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="form-group col-md-2">
+          <label for="invntryUom">Unidad de Medida de Inventario</label>
+          <input type="text" class="form-control col-md-2" id="invntryUom"  placeholder="Unidad de medida">
+        </div>
+        <div class="form-group col-md-2">
+          <br>
+          <label for="buyUnitMsr">Unidad Compra</label>
+          <input type="text" class="form-control col-md-2" id="buyUnitMsr" placeholder="Unidad Compra">
+        </div>
+        <div class="form-group col-md-2">
+          <br>
+          <label for="purPackMsr">Paquete Compra</label>
+          <input type="text" class="form-control col-md-2" id="purPackMsr" placeholder="Inner">
+        </div>
+        <div class="form-group col-md-2">
+          <br>
+          <label for="salPackMsr">Paquete Venta</label>
+          <input type="text" class="form-control col-md-2" id="salPackMsr" placeholder="Inner">
+        </div>
+        <div class="form-group col-md-2">
+          <br>
+          <label for="sww">Codigo Adicional</label>
+          <input type="text" class="form-control col-md-2" id="sww" placeholder="Codigo">
+        </div>
+      </div>
+    </div>
+    <br>
+      <div class="border border-dark rounded " style="padding-left:80px;padding-right: 80px;">
+        <div class="row">
+          <div class="form-group col-md-2">
+            <label for="cat_Linea">Linea</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_Linea">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_Mixto">Mixto</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_Mixto">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_Casa">Casa</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_Casa">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_ProductoN">Productos Nuevos</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_ProductoN">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_LAColors">L.A. Color</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_LAColors">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_RubyRose">Ruby Rose</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_RubyRose">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="form-group col-md-2">
+            <label for="cat_IMNatural">IM Natural</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_IMNatural">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_Curtis">Curtis</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_Curtis">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_Moda">Moda</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_Moda">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_Temporada">Temporada</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_Temporada">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_AretesP">Arete y Piercing</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_AretesP">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_AnilloP">Anillo y Pulsera</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_AnilloP">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="form-group col-2">
+            <label for="cat_Collar">Collar</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_Collar">
+          </div>
+          <div class="form-group col-2">
+            <label for="cat_CabelloApple">Cabello by Apple</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_CabelloApple">
+          </div>
+          <div class="form-group col-2" style="width: 200px;">
+            <label for="cat_AccesoriosApple">Accesorios by Apple</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_AccesoriosApple">
+          </div>
+          <div class="form-group col-2">
+            <label for="cat_PestanasApple">Pesta&ntilde;as by Apple</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_PestanasApple">
+          </div>
+          <div class="form-group col-2" style="width: 200px;">
+            <label for="cat_AplicadoresApple">Aplicadores by Apple</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_AplicadoresApple">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="form-group col">
+            <label for="cat_DepiladoresApple">Depiladores Apple</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_DepiladoresApple">
+          </div>
+          <div class="form-group col-sm-2">
+            <label for="cat_LapizAND">Lapiz AND</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_LapizAND">
+          </div>
+          <div class="form-group col-md-auto">
+            <label for="cat_CosmeticoMega">Cosmetico MEGALINE</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_CosmeticoMega">
+          </div>
+          <div class="form-group col-2">
+            <label for="cat_DonasValerinas">Donas y Valerinas</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_DonasValerinas">
+          </div>
+          <div class="form-group col-2">
+            <label for="cat_BroPasCucas">Broches,P y C</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_BroPasCucas">
+          </div>
+          <div class="form-group col-2">
+            <label for="cat_PinzasDiademas">Pinzas y Diademas</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_PinzasDiademas">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="form-group col-2">
+            <label for="cat_LigasColetero">Ligas y Coletero</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_LigasColetero">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_Naturone">Naturone</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_Naturone">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_Prosa41">Prosa 4 en 1</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_Prosa41">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_Postizas">Postizas</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_Postizas">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_Hogar">Hogar</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_Hogar">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_Cocina">Cocina</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_Cocina"> 
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="form-group col-md-2">
+            <label for="cat_Juguetes">Juguetes</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_Juguetes">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_Escritura">Escritura</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_Escritura">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_CortaPega">Corta y Pega</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_CortaPega">
+          </div>
+          <div class="form-group col-md-auto">
+            <label for="cat_EmpaquesRegalo">Empaques de Regalo</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_EmpaquesRegalo">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_Complemento">Complementos</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_Complemento">
+          </div>
+          <div class="form-group col-md-auto">
+            <label for="cat_CabelloMegaline">Cabello Megaline</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_CabelloMegaline">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="form-group col-md-2">
+            <label for="cat_Ultramo">ULTRANO</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_Ultramo">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_Remate">Remate</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_Remate">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_Importacion">Importación</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_Importacion">
+          </div>
+          <div class="form-group col-md-auto">
+            <label for="cat_TemSep">Temporada Septiembre</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_TemSep">
+          </div>
+          <div class="form-group col-md-auto">
+            <label for="cat_TemHallow">Temporada Halloween</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_TemHallow">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="form-group col-md-2">
+            <label for="cat_TemNavid">Temporada Navidad</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_TemNavid">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_Fiesta">Fiesta</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_Fiesta">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_CajaCerrada">Caja Cerrada</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_CajaCerrada">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_Nails">U&nacute;as</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_Nails">
+          </div>
+          <div class="form-group col-md-auto">
+            <label for="cat_AccesoriosMegaline">Accesorios MEGALINE</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_AccesoriosMegaline">
+          </div>
+          <div class="form-group col-md-auto">
+            <label for="cat_AccesoriosAND">Accesorios AND</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_AccesoriosAND">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="form-group col-md-auto">
+            <label for="cat_CabelloAND">Cabello AND</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_CabelloAND">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_PestanaAND">Pesta&ntilde;as AND</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_PestanaAND">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_DepiladoresAND">Depiladores AND</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_DepiladoresAND">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_AplicadoresAND">Aplicadores AND</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_AplicadoresAND">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_HebleeCosmetics">Hebble Cosmetics</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_HebleeCosmetics">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_Marcas">Marcas</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_Marcas">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="form-group col-md-2">
+            <label for="cat_Rostro">Rostro</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_Rostro">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_Ojos">Ojos</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_Ojos">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_Labios">Labios</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_Labios">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_CuidadoPiel">Cuidado de la piel</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_CuidadoPiel">
+          </div>
+          <div class="form-group col-md-auto">
+            <label for="cat_AccesorioBelleza">Accesorios de Belleza</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_AccesorioBelleza">
+          </div>
+          <div class="form-group col-md-auto">
+            <label for="cat_Bissu">Bissú</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_Bissu">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="form-group col-md-2">
+            <label for="cat_ByApple">By Apple</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_ByApple">
+          </div>
+          <div class="form-group col-md-auto">
+            <label for="cat_Maravilla">Maravilla</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_Maravilla">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_Saniye">Saniye</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_Saniye">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_Pink21">Pink 21</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_Pink21">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_AmorUS">Amor Us</label>&nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_AmorUS">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cat_DanzonCosmetics">Dazon Cosmetics</label> &nbsp;
+            <input type="checkbox" class="form-check-input" id="cat_DanzonCosmetics">
+          </div>
+        </div>
+      </div> -->
+      <br>
+      <br>
+      <button type="submit" class="btn btn-success">Guardar</button>
+      <button type="button" (click)="regresar()">Regresar</button>
+  </form>
+  <br><br>
+</div>

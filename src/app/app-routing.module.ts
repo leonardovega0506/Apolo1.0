@@ -18,14 +18,23 @@ import { AccionesRegistroComponent } from './views/almacen/acciones-registro/acc
 import { DashboardAlmacenComponent } from './views/almacen/dashboard-almacen/dashboard-almacen.component';
 import { ProductosAlmacenComponent } from './views/almacen/productos-almacen/productos-almacen.component';
 import { RegistrosAlmacenComponent } from './views/almacen/registros-almacen/registros-almacen.component';
+import { AccionesComprasComponent } from './views/compras/acciones-compras/acciones-compras.component';
+import { AgregarItemComprasComponent } from './views/compras/agregar-item-compras/agregar-item-compras.component';
+import { AsignarProductoComprasComponent } from './views/compras/asignar-producto-compras/asignar-producto-compras.component';
 import { DashboardComprasComponent } from './views/compras/dashboard-compras/dashboard-compras.component';
+import { DetalleItemComprasComponent } from './views/compras/detalle-item-compras/detalle-item-compras.component';
+import { ItemsComprasComponent } from './views/compras/items-compras/items-compras.component';
+import { OrdenesComprasComponent } from './views/compras/ordenes-compras/ordenes-compras.component';
+import { RegistrosComprasComponent } from './views/compras/registros-compras/registros-compras.component';
 import { AccionesFotoComponent } from './views/foto/acciones-foto/acciones-foto.component';
 import { DashboardFotoComponent } from './views/foto/dashboard-foto/dashboard-foto.component';
 import { DetalleItemFotoComponent } from './views/foto/detalle-item-foto/detalle-item-foto.component';
 import { ItemsFotoComponent } from './views/foto/items-foto/items-foto.component';
 import { RegistroFotoComponent } from './views/foto/registro-foto/registro-foto.component';
 import { LoginComponent } from './views/login/login.component';
+import { AccionesReciboComponent } from './views/recibo/acciones-recibo/acciones-recibo.component';
 import { DashboardReciboComponent } from './views/recibo/dashboard-recibo/dashboard-recibo.component';
+import { DetalleItemReciboComponent } from './views/recibo/detalle-item-recibo/detalle-item-recibo.component';
 import { ItemsReciboComponent } from './views/recibo/items-recibo/items-recibo.component';
 import { RegistrosReciboComponent } from './views/recibo/registros-recibo/registros-recibo.component';
 
@@ -48,7 +57,15 @@ const routes: Routes = [
     {path:'items',component:ProductosAlmacenComponent},
     {path:'acciones-almacen/:idRegistro',component:AccionesRegistroComponent}
   ]},
-  {path: 'compras',component:DashboardComprasComponent,pathMatch:'full',canActivate:[ComprasGuard]},
+  {path: 'compras',component:DashboardComprasComponent,canActivate:[ComprasGuard], children:[
+    {path:'registros',component:RegistrosComprasComponent},
+    {path:'acciones-compras/:idRegistro',component:AccionesComprasComponent},
+    {path:'items',component:ItemsComprasComponent},
+    {path:'detalle-item/:itemCode',component:DetalleItemComprasComponent},
+    {path:'agregar-item',component:AgregarItemComprasComponent},
+    {path:'ordenes',component:OrdenesComprasComponent},
+    {path:'asignarProducto/:id',component:AsignarProductoComprasComponent}
+]},
   {path:'foto',component:DashboardFotoComponent,canActivate:[FotoGuard], children:[
     {path:'registros',component:RegistroFotoComponent},
     {path:'items',component:ItemsFotoComponent},
@@ -57,7 +74,9 @@ const routes: Routes = [
   ]},
   {path:'recibo',component:DashboardReciboComponent,canActivate:[ReciboGuard],children:[
     {path:'registros',component:RegistrosReciboComponent},
-    {path:'items',component:ItemsReciboComponent}
+    {path:'items',component:ItemsReciboComponent},
+    {path:'detalle-item/:itemCode',component:DetalleItemReciboComponent},
+    {path:'acciones-recibo/:idRegistro',component:AccionesReciboComponent}
   ]},
   
 ];

@@ -4,41 +4,37 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AndService } from 'src/app/services/api/and.service';
 
 @Component({
-  selector: 'app-items-recibo',
-  templateUrl: './items-recibo.component.html',
-  styleUrls: ['./items-recibo.component.css']
+  selector: 'app-items-compras',
+  templateUrl: './items-compras.component.html',
+  styleUrls: ['./items-compras.component.css']
 })
-export class ItemsReciboComponent implements OnInit{
+export class ItemsComprasComponent implements OnInit{
   items:any=[];
   itemCodeBuscar:any;
   item:any;
 
-  constructor(private router:Router,private andService:AndService,private modal:NgbModal){}
+  constructor(private andService:AndService,private modal:NgbModal,private router:Router){}
 
   ngOnInit(): void {
     this.andService.listaItems().subscribe(
       (data) =>{
-        this.items = data;
+        this.items=data;
       },
       (error) =>{
         console.log(error);
       }
     );
   }
-  detalles(itemCode:any){
-    console.log(itemCode);
-    this.router.navigate(['/recibo/detalle-item',itemCode]);
-  }
   buscarItemCode(){
     this.andService.obtenerItemByItemCode(this.itemCodeBuscar).subscribe(
-      (data) =>{
-      this.item = data;
-      alert("Item buscado: "+this.item.itemCode +" \n" +this.item.itemName);
-      this.modal.dismissAll();
+      (data)=>{
+        this.item = data;
+        this.ngOnInit();
+        alert("Producto Buscado: "+this.item.itemName);
+        this.modal.dismissAll();
       },
       (error) =>{
-        console.log(error);
-        alert("El Articulo con este codigo no existe, favor de verificar");
+        alert("No existe ese articulo");
         this.modal.dismissAll();
       }
     );
@@ -46,5 +42,8 @@ export class ItemsReciboComponent implements OnInit{
   open(agregarItem) {
     this.modal.open(agregarItem, { centered: true });
   }
-
+  detalles(itemCode:any){
+    console.log(itemCode);
+    this.router.navigate(['compras/detalle-item',itemCode]);
+  }
 }

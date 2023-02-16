@@ -68,4 +68,19 @@ export class AndService {
   public generarTiempoFoto(idRegistro:any){
     return this.http.put(this.baseAnd+"/registros/foto-t/"+idRegistro,idRegistro);
   }
+  public generarTiempoCompraMM(idRegistro:any){
+    return this.http.put(this.baseAnd+"/registros/compra-m/"+idRegistro,idRegistro);
+  }
+  public generarTiempoTransito(idRegistro:any){
+    return this.http.put(this.baseAnd+"/registros/transito/"+idRegistro,idRegistro);  
+  }
+  public generarTiempoReciboL(idRegistro:any){
+    return this.http.put(this.baseAnd+"/registros/recibo-l"+idRegistro,idRegistro);
+  }
+  public generarTiempoCompraMuestraL(idRegistro:any){
+    return this.http.put(this.baseAnd+"/registros/compra-l/"+idRegistro,idRegistro);
+  }
+  public generarTiempoCompraMF(idRegistro:any){
+    return this.http.put(this.baseAnd+"/registros/compra-f/"+idRegistro,idRegistro);
+  }
 }

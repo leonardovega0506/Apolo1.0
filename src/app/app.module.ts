@@ -15,7 +15,6 @@ import { DashboardAlmacenComponent } from './views/almacen/dashboard-almacen/das
 import { DashboardComprasComponent } from './views/compras/dashboard-compras/dashboard-compras.component';
 import { DashboardFotoComponent } from './views/foto/dashboard-foto/dashboard-foto.component';
 import { RegistrosCompletosComponent } from './views/admin/registros-completos/registros-completos.component';
-import { DetalleRegistroComponent } from './views/recibo/detalle-registro/detalle-registro.component';
 import { SidebarComponent } from './views/admin/sidebar/sidebar.component';
 import { NavbarComponent } from './views/admin/navbar/navbar.component';
 import { OrdenesAdminComponent } from './views/admin/ordenes-admin/ordenes-admin.component';
@@ -38,6 +37,16 @@ import { DetalleItemFotoComponent } from './views/foto/detalle-item-foto/detalle
 import { SidebarReciboComponent } from './views/recibo/sidebar-recibo/sidebar-recibo.component';
 import { RegistrosReciboComponent } from './views/recibo/registros-recibo/registros-recibo.component';
 import { ItemsReciboComponent } from './views/recibo/items-recibo/items-recibo.component';
+import { DetalleItemReciboComponent } from './views/recibo/detalle-item-recibo/detalle-item-recibo.component';
+import { AccionesReciboComponent } from './views/recibo/acciones-recibo/acciones-recibo.component';
+import { SidebarComprasComponent } from './views/compras/sidebar-compras/sidebar-compras.component';
+import { RegistrosComprasComponent } from './views/compras/registros-compras/registros-compras.component';
+import { AccionesComprasComponent } from './views/compras/acciones-compras/acciones-compras.component';
+import { ItemsComprasComponent } from './views/compras/items-compras/items-compras.component';
+import { DetalleItemComprasComponent } from './views/compras/detalle-item-compras/detalle-item-compras.component';
+import { AgregarItemComprasComponent } from './views/compras/agregar-item-compras/agregar-item-compras.component';
+import { OrdenesComprasComponent } from './views/compras/ordenes-compras/ordenes-compras.component';
+import { AsignarProductoComprasComponent } from './views/compras/asignar-producto-compras/asignar-producto-compras.component';
 
 
 
@@ -52,7 +61,6 @@ import { ItemsReciboComponent } from './views/recibo/items-recibo/items-recibo.c
     DashboardComprasComponent,
     DashboardFotoComponent,
     RegistrosCompletosComponent,
-    DetalleRegistroComponent,
     SidebarComponent,
     NavbarComponent,
     OrdenesAdminComponent,
@@ -73,7 +81,18 @@ import { ItemsReciboComponent } from './views/recibo/items-recibo/items-recibo.c
     DetalleItemFotoComponent,
     SidebarReciboComponent,
     RegistrosReciboComponent,
-    ItemsReciboComponent
+    ItemsReciboComponent,
+    DetalleItemReciboComponent,
+    AccionesReciboComponent,
+    SidebarComprasComponent,
+    RegistrosComprasComponent,
+    AccionesComprasComponent,
+    ItemsComprasComponent,
+    DetalleItemComprasComponent,
+    AgregarItemComprasComponent,
+    OrdenesComprasComponent,
+    AsignarProductoComprasComponent,
+
   ],
   imports: [
     BrowserModule,

@@ -14,14 +14,26 @@
           <tr>
             <th scope="col">#</th>
             <th scope="col">Estatus</th>
+            <th scope="col">Fecha Llegada</th>
+            <th scope="col">Hora Llegada</th>
+            <th scope="col">Fecha Recibo M</th>
+            <th scope="col">Hora Recibo M</th>
+            <th scope="col">Fecha Recibo L</th>
+            <th scope="col">Hora Recibo L</th>
             <th scope="col">Accion</th>
           </tr>
         </thead>
         <tbody *ngFor="let registro of registros">
-          <tr *ngIf="registro.estatus == 'Llegada a Recibo' || registro.estatus == 'Muestra Liberada' || registro.estatus == 'Mercancia Liberada en Recibo' || registro.estatus == 'Llegada a Recibo,Con Orden?'">
+          <tr *ngIf="registro.estatus == 'Llegada a Recibo' || registro.estatus == 'Muestra Liberada' || registro.estatus == 'Mercancia Liberada en Recibo' || registro.estatus == 'Llegada a Recibo, Con Orden'">
             <td>{{registro.idRegistro}}</td>
             <td>{{registro.estatus}}</td>
-            <td><button type="button" [routerLink]="'/recibo/detalleRegistros/'+registro.idRegistro" class="btn btn-warning">Acciones</button></td>
+            <td>{{registro.dateReciboOCLlegada}}</td>
+            <td>{{registro.timeReciboOCLlegada}}</td>
+            <td>{{registro.dateReciboMuestraM}}</td>
+            <td>{{registro.timeReciboMuestraM}}</td>
+            <td>{{registro.dateReciboL}}</td>
+            <td>{{registro.timeReciboL}}</td>
+            <td><button type="button" [routerLink]="'/recibo/acciones-recibo/'+registro.idRegistro" class="btn btn-warning">Acciones</button></td>
           </tr>
         </tbody>
       </table>

@@ -1,0 +1,18 @@
+<div class="container">
+    <p>Orden de Compra</p>
+    <p>{{registro?.ordenCompra.docNum}}</p>
+    <p>Estatus</p>
+    <p>{{registro?.estatus}}</p>
+    <div *ngIf="registro?.estatus == 'Llegada a Recibo'">
+        <button (click)="generarAccionCompraMM(registro?.idRegistro)">Registrar Tiempo Mandar Muestra a compras</button>
+    </div>
+    <div *ngIf="registro?.estatus == 'Muestra Liberada'">
+        <button (click)="generarAccionTransito(registro?.idRegistro)">Registrar Tiempo Mandar a Transito</button>
+    </div>
+    <div *ngIf="registro?.estatus == 'Mercancia Liberada en Recibo'">
+        <button (click)="generarAccionReciboL(registro?.idRegistro)">Registrar Tiempo Liberar Mercancia</button>
+    </div>
+    <div *ngIf="registro?.estatus == 'Llegada a Recibo, Con Orden'">
+        <button (click)="generarAccionTransito(registro?.idRegistro)">Registrar Tiempo Mandar a Transito</button> 
+    </div>
+</div>

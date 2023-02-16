@@ -4,6 +4,7 @@
     <br>
     <br>
     <div>
+      <button type="button" class="btn btn-success" routerLink="/compras/agregar-item">Crear Registro</button>
       <button type="button" class="btn btn" (click)="open(item)">Buscar Item</button>
     </div>
     <br>
@@ -20,7 +21,7 @@
             <td>{{item.itemCode}}</td>
             <td>{{item.itemName}}</td>
             <td>{{item.ncmCode}}</td>
-  
+
             <td><button class="btn btn-warning" (click)="detalles(item.itemCode)">Detalles</button></td>
           </tr>
         </thead>

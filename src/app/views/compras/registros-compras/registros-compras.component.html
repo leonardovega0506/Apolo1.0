@@ -1,0 +1,38 @@
+<div class="container">
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="row">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Estatus</th>
+            <th scope="col">Fecha Compra M</th>
+            <th scope="col">Hora Compras M</th>
+            <th scope="col">Fecha Muestra F</th>
+            <th scope="col">Hora Muestra F</th>
+            <th scope="col">Fecha Compra L</th>
+            <th scope="col">Hora Compra L</th>
+            <th scope="col">Accion</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let registro of registros">
+          <tr *ngIf="registro.estatus == 'Muestra a Compras' || registro.estatus == 'Muestra a Foto' || registro.estatus == 'Foto Tomada'">
+            <td>{{registro.idRegistro}}</td>
+            <td>{{registro.estatus}}</td>
+            <td>{{registro.dateReciboMuestraM}}</td>
+            <td>{{registro.timeReciboMuestraM}}</td>
+            <td>{{registro.dateCompraMuestraF}}</td>
+            <td>{{registro.timeCompraMuestraF}}</td>
+            <td>{{registro.dateCompraMuestraL}}</td>
+            <td>{{registro.timeCompraMuestraL}}</td>
+            <td><button type="button" (click)="accionesCompras(registro.idRegistro)" class="btn btn-warning">Acciones</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
