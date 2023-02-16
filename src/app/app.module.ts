@@ -47,6 +47,12 @@ import { DetalleItemComprasComponent } from './views/compras/detalle-item-compra
 import { AgregarItemComprasComponent } from './views/compras/agregar-item-compras/agregar-item-compras.component';
 import { OrdenesComprasComponent } from './views/compras/ordenes-compras/ordenes-compras.component';
 import { AsignarProductoComprasComponent } from './views/compras/asignar-producto-compras/asignar-producto-compras.component';
+//Import de Angular Material
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
 
 
 
@@ -99,7 +105,13 @@ import { AsignarProductoComprasComponent } from './views/compras/asignar-product
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    //Iniciamos import de Angular Material
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
+    MatIconModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

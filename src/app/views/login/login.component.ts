@@ -2,21 +2,24 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login/login.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  //Variables para el form del Login
   loginForm = {
     "username": '',
     "password": ''
   }
+  //Constructor
   constructor(private login: LoginService, private router: Router) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
+  //Metodo para ingresar al dashboard corresponiente
   loginSubmit() {
     if (this.loginForm.username.trim() == '' || this.loginForm.username.trim() == null) {
       alert("El usuario no puede estar vacio");
@@ -26,6 +29,7 @@ export class LoginComponent implements OnInit {
       alert("El usuario no puede estar vacio");
       return;
     }
+    //Conexion al service login
     this.login.loginToken(this.loginForm).subscribe(
       (data: any) => {
         console.log(data);
@@ -34,6 +38,7 @@ export class LoginComponent implements OnInit {
           (user: any) => {
             this.login.setUser(user);
             console.log(user);
+            //Verificacion de Roles
             if (this.login.getUserRoles() == "ROLE_ADMIN") {
               this.router.navigate(['admin']);
             }
@@ -60,7 +65,6 @@ export class LoginComponent implements OnInit {
         alert('Error');
       }
     )
-
-  }
+}
 
 }

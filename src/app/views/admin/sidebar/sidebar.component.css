@@ -1,12 +1,22 @@
 body {
-    background-color: #fbfbfb;
+
   }
   @media (min-width: 991.98px) {
     main {
       padding-left: 240px;
     }
   }
-  
+  .color-sidebar{
+    background-color: #634A97;
+  }
+  .color-tr{
+    background-color: #634A97;
+    color: #fff;
+    border: none;
+  }
+  .color-tr a:hover{
+    color: #FF5078;
+  }
   /* Sidebar */
   .sidebar {
     position: fixed;
@@ -17,6 +27,22 @@ body {
     box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
     width: 240px;
     z-index: 600;
+  }
+  .color-listado {
+    background-color: transparent;
+    color: #fff;
+  }
+  .color-listado:hover{
+    color: #3CC3C8;
+    border-bottom: 0.5px #fff solid;
+  }
+  .color-salir {
+    background-color: transparent;
+    color: #fff;
+  }
+  .color-salir:hover{
+    color: #FFC300;
+    border:none
   }
   
   @media (max-width: 991.98px) {

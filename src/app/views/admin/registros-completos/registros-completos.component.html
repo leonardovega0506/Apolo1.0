@@ -1,62 +1,76 @@
-<div class="container">
-  <br>
-  <br>
-  <br>
-  <br>
-  <div>
-    <button type="button" class="btn btn-success" (click)="open(contenido)">Crear Registro</button>
+<section class="intro">
+  <div class="bg-image h-100" style="background-color: transparent;">
+    <div class="mask d-flex align-items-center h-100">
+      <div class="container">
+        <br><br>
+        <h2>
+          <mat-icon>access_time</mat-icon>Registros
+        </h2>
+        <br>
+        <br>
+        <button type="button" mat-raised-button (click)="open(contenido)" class="btnAgregar">
+          <mat-icon>update</mat-icon> Crear Registro
+        </button>
+        <br><br>
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body p-0">
+                <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative; height: 700px">
+                  <table class="table table-striped mb-0">
+                    <thead style="background-color: #634A97; color: #f5f7fa;">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Estatus</th>
+                        <th scope="col">Accion</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let registro of registros">
+                      <tr>
+                        <td>{{registro.idRegistro}}</td>
+                        <td>{{registro.estatus}}</td>
+                        <td><button type="button" [routerLink]="'/admin/detalleRegistros/'+registro.idRegistro"
+                            class="btn btn-warning">Detalles</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <br>
-  <br>
-  <div class="row">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Estatus</th>
-          <th scope="col">Accion</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let registro of registros">
-          <td>{{registro.idRegistro}}</td>
-          <td>{{registro.estatus}}</td>
-          <td><button type="button" [routerLink]="'/admin/detalleRegistros/'+registro.idRegistro" class="btn btn-warning">Detalles</button></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
+</section>
 
 
 <!--Modal Crear Registro-->
 <ng-template #contenido let-modal>
   <form (ngSubmit)="generarRegistro()">
-  <div class="modal-header">
+    <div class="modal-header">
       <h4 class="modal-title">Crear Registro</h4>
       <button class="btn close" aria-label="close" type="button" (click)="modal.dismiss()">
-          <span aria-hidden="true">&times;</span>
+        <span aria-hidden="true">&times;</span>
       </button>
-  </div>
-  <div class="modal-body">
+    </div>
+    <div class="modal-body">
 
-    <p>¿Cuenta con numero de Orden?</p>
-    <p>
-      <input type="radio" name="verificacion" value="Si" id="positivo" (click)="showData()">Sí
-      <input type="radio" name="verificacion" value="No" id="negativo" (click)="hideData()">No
-    </p>
-    <div *ngIf="verificacion == true">
-      <input type="text" [(ngModel)]="numeroEntrada" name="numeroEntrada" placeholder="Numero de Entrada" class="form-control mr-sm-2">
-    </div> 
-  </div>
-  
-  <div class="modal-footer">
+      <p>¿Cuenta con numero de Orden?</p>
+      <p>
+        <input type="radio" name="verificacion" value="Si" id="positivo" (click)="showData()">Sí
+        <input type="radio" name="verificacion" value="No" id="negativo" (click)="hideData()">No
+      </p>
+      <div *ngIf="verificacion == true">
+        <input type="text" [(ngModel)]="numeroEntrada" name="numeroEntrada" placeholder="Numero de Entrada"
+          class="form-control mr-sm-2">
+      </div>
+    </div>
+
+    <div class="modal-footer">
       <button type="submit" class="btn btn-success">Generar</button>
       <button type="button" class="btn btn-warning" (click)="modal.close()">Cerrar</button>
-  </div>
+    </div>
   </form>
 </ng-template>
 <!--/Modal Crear Registro-->
-
-
