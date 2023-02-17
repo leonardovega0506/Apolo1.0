@@ -36,6 +36,9 @@ export class AndService {
   public obtenerItemByItemCode(itemCode:any){
     return this.http.get(this.baseAnd+"/items/itemCode/"+itemCode);
   }
+  public asignarOrden(docEntry:any,id:any){
+    return this.http.get(this.baseAnd+"/ordenes/asignarOrden/"+id+"?docEntry="+docEntry);
+  }
   public crearRegistro(numeroEntrada?:any){
     if(numeroEntrada!=0){
     return this.http.post(this.baseAnd+"/registros/crear?numeroEntrada="+numeroEntrada,numeroEntrada);

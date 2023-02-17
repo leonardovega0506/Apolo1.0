@@ -1,54 +1,88 @@
-<div class="container">
-    <br>
-    <br>
-    <br>
-    <br>
-    <div>
-      <button type="button" class="btn btn-success" routerLink="/admin/agregar-item">Crear Registro</button>
-      <button type="button" class="btn btn" (click)="open(item)">Buscar Item</button>
-    </div>
-    <br>
-    <br>
-    <div class="row">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Codigo</th>
-            <th scope="col">Descripcion</th>
-            <th scope="col">Codigo SAT</th>
-          </tr>
-          <tr *ngFor="let item of items">
-            <td>{{item.itemCode}}</td>
-            <td>{{item.itemName}}</td>
-            <td>{{item.ncmCode}}</td>
-
-            <td><button class="btn btn-warning" (click)="detalles(item.itemCode)">Detalles</button></td>
-          </tr>
-        </thead>
-        <tbody>
-    
-        </tbody>
-      </table>
-    </div>
-  
-  </div>
-  <ng-template #item let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title">Agregar Item a Orden de Compra</h4>
-      <button class="btn close" aria-label="close" type="button" (click)="modal.dismiss()">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <div class="col">
-        <p>Digite el codigo del articulo</p>
-        <p>
-          <input type="text" name="itemCode" [(ngModel)]="itemCodeBuscar">
-          <button (click)="buscarItemCode()">Buscar</button>
-        </p>
+<!--Encabezado principal-->
+<section class="intro">
+  <div class="bg-image h-100" style="background-color: transparent;">
+    <div class="mask d-flex align-items-center h-100">
+      <div class="container">
+        <br><br>
+        <!--Titulo-->
+        <h2>
+          <mat-icon>folder</mat-icon>Productos
+        </h2>
+        <br>
+        <br>
+        <!--Agregar Registro-->
+        <button type="button" class="btn btnAgregar" routerLink="/admin/agregar-item">
+          <mat-icon style="width: 80%;">add</mat-icon> Crear Registro
+        </button>
+        &nbsp;&nbsp;
+        <!--Buscar Registros-->
+        <button type="button" class="btn btnBuscar" (click)="open(item)">
+          <mat-icon style="width: 80%;">search</mat-icon> Buscar Item
+        </button>
+        <br><br>
+        <!--Inicio de la Tabla-->
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body p-0">
+                <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true"
+                  style="position: relative; height: 700px">
+                  <table class="table table-striped mb-0">
+                    <!--Cabecero de la tabla-->
+                    <thead style="background-color: #634A97; color: #f5f7fa;">
+                      <tr>
+                        <th scope="col">Codigo</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col">Accion</th>
+                      </tr>
+                    </thead>
+                    <!--Cuerpo de la Tabla-->
+                    <tbody *ngFor="let item of items" style="background-color: transparent;">
+                      <tr>
+                        <td>{{item.itemCode}}</td>
+                        <td>{{item.itemName}}</td>
+                        <td><button mat-raised-button class="btnDetalles"
+                            (click)="detalles(item.itemCode)">Detalles</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Fin Tabla-->
       </div>
     </div>
-    <div class="modal-footer">
+  </div>
+</section>
+
+<!--Modal Buscar-->
+<ng-template #item let-modal>
+  <!--Cabecera-->
+  <div class="modal-header fondo-cabecera">
+    <h4 class="modal-title">Agregar Item a Orden de Compra</h4>
+    <button class="btn close" aria-label="close" type="button" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <!--Cuerpo-->
+  <div class="modal-body fondo-modal">
+    <div class="col">
+      <p>Digite el codigo del articulo</p>
+      <p>
+        <br>
+        <mat-form-field class="full-size" appearance="outline">
+          <mat-label>Codigo</mat-label>
+          <input matInput name="itemCode" [(ngModel)]="itemCodeBuscar">
+        </mat-form-field>
+      </p>
     </div>
-  </ng-template>
-  
+  </div>
+  <!--Pie-->
+  <div class="modal-footer">
+    <button type="submit" (click)="buscarItemCode()" class="btn btnAgregar">Buscar</button>
+    <button type="button" class="btn btnDetalles btnCerrar" (click)="modal.close()">Cerrar</button>
+  </div>
+</ng-template>
+

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login/login.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -22,22 +23,21 @@ export class LoginComponent implements OnInit {
   //Metodo para ingresar al dashboard corresponiente
   loginSubmit() {
     if (this.loginForm.username.trim() == '' || this.loginForm.username.trim() == null) {
-      alert("El usuario no puede estar vacio");
+      Swal.fire('Error','Asegurate de poner el usuario al ingresar','error');
       return;
     }
     if (this.loginForm.password.trim() == '' || this.loginForm.password.trim() == null) {
-      alert("El usuario no puede estar vacio");
+      Swal.fire('Error','Asegurate de poner la contraseña al ingresar','error');
       return;
     }
     //Conexion al service login
     this.login.loginToken(this.loginForm).subscribe(
       (data: any) => {
-        console.log(data);
+        Swal.fire('Acceso',"Accesos Correcto","success")
         this.login.loginUser(data.token);
         this.login.getCurrentUser().subscribe(
           (user: any) => {
             this.login.setUser(user);
-            console.log(user);
             //Verificacion de Roles
             if (this.login.getUserRoles() == "ROLE_ADMIN") {
               this.router.navigate(['admin']);
@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
       },
       (error) => {
         console.log(error);
-        alert('Error');
+        Swal.fire("Error","Error al Entrar, verifica nuevamente","error");
       }
     )
 }

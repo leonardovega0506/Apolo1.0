@@ -1,17 +1,119 @@
-<div>
-    <button routerLink="/admin/registros" class="btn btn-warning">Regresar</button>
-</div>
+<!--Cabacero-->
 <div class="container">
-    <div class="row">
-        <h1>Detalle del Registro</h1>
-        <div><h5>Fecha y Hora de Llegada de Mercancia</h5><span>{{registro?.dateReciboOCLlegada}} ( {{registro?.timeReciboOCLlegada}} )</span></div>
-        <div><h5>Fecha y Hora de Muestra Mandada a Compras</h5><span>{{registro?.dateReciboMuestraM}} ( {{registro?.timeReciboMuestraM}} )</span></div>
-        <div><h5>Fecha y hora de Muestra Mandada a Foto</h5><span>{{registro?.dateCompraMuestraF}} ( {{registro?.timeCompraMuestraF}} )</span></div>
-        <div><h5>Fecha y Hora de Muestra Fotografiada</h5><span>{{registro?.dateFoto}} ( {{registro?.timeFotoT}} )</span></div>
-        <div><h5>Fecha y Hora de Muestra Liberada</h5><span>{{registro?.dateCompraMuestraL}} ( {{registro?.timeCompraMuestraL}} )</span></div>
-        <div><h5>Fecha y Hora de Orden Liberada</h5><span>{{registro?.dateReciboL}} ( {{registro?.timeReciboL}} )</span></div>
-        <div><h5>Fecha y Hora de Mercancia en Transito</h5><span>{{registro?.date_Transito}} ( {{registro?.timeTransito}} )</span></div>
-        <div><h5>Fecha yHora de Mercancia en Alamcen</h5><span>{{registro?.date_Almacen}} ( {{registro?.timeAlmacen}} )</span></div>    
-        <div><h5>Estatus</h5><span>{{registro?.estatus}}</span></div>    
+  <div class="row">
+    <h1>Detalle del Registro</h1>
+  </div>
+  <div>
+    <button routerLink="/admin/registros" class="btn btnRegresar">
+      <mat-icon style="width: 50%;">arrow_back</mat-icon>Regresar
+    </button>
+  </div>
+  <br>
+  <!--Linea de Tiempo-->
+  <div class="container bootdey">
+    <div class="row gutters">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <!-- Timeline start -->
+            <div class="timeline">
+              <!--Recibo Llegada-->
+              <div class="timeline-row" *ngIf="registro?.dateReciboOCLlegada">
+                <div class="timeline-time">
+                  {{registro?.timeReciboOCLlegada.substring(0,5)}}<small>{{registro?.dateReciboOCLlegada}}</small>
+                </div>
+                <div class="timeline-dot fb-bg"></div>
+                <div class="timeline-content">
+                  <h4>
+                    <mat-icon>add_location</mat-icon>&nbsp; Llegada de Mercancia
+                  </h4>
+                </div>
+              </div>
+              <!--Muestra a Compras-->
+              <div class="timeline-row" *ngIf="registro?.dateReciboMuestraM">
+                <div class="timeline-time">
+                  {{registro?.timeReciboMuestraM.substring(0,5)}}<small>{{registro?.dateReciboMuestraM}}</small>
+                </div>
+                <div class="timeline-dot green-one-bg"></div>
+                <div class="timeline-content green-one">
+                  <h4>Muestra a Compras <mat-icon>shopping_basket</mat-icon>
+                  </h4>
+                </div>
+              </div>
+              <!--Muestra a Foto-->
+              <div class="timeline-row" *ngIf="registro?.dateCompraMuestraF">
+                <div class="timeline-time">
+                  {{registro?.timeCompraMuestraF.substring(0,5)}}<small>{{registro?.dateCompraMuestraF}}</small>
+                </div>
+                <div class="timeline-dot green-two-bg"></div>
+                <div class="timeline-content green-two">
+                  <h4>
+                    <mat-icon>add_a_photo</mat-icon>&nbsp;Muestra Mandada a Foto
+                  </h4>
+                </div>
+              </div>
+              <!--Fotos Tomadas-->
+              <div class="timeline-row" *ngIf="registro?.dateFoto">
+                <div class="timeline-time">
+                  {{registro?.timeFotoT.substring(0,5)}}<small>{{registro?.dateFoto}}</small>
+                </div>
+                <div class="timeline-dot green-three-bg"></div>
+                <div class="timeline-content green-three">
+                  <h4>
+                    <mat-icon>camera_enhance</mat-icon> &nbsp; Muestras Fotografiadas
+                  </h4>
+                </div>
+              </div>
+              <!--Muestra Liberada-->
+              <div class="timeline-row" *ngIf="registro?.dateCompraMuestraL">
+                <div class="timeline-time">
+                  {{registro?.timeCompraMuestraL.substring(0,5)}}<small>{{registro?.dateCompraMuestraL}}</small>
+                </div>
+                <div class="timeline-dot green-four-bg"></div>
+                <div class="timeline-content green-four">
+                  <h4>
+                    <mat-icon>grading</mat-icon> Muestra Liberada
+                  </h4>
+                </div>
+              </div>
+              <!--Mercancia Liberada en Recibo-->
+              <div class="timeline-row" *ngIf="registro?.dateReciboL">
+                <div class="timeline-time">
+                  {{registro?.timeReciboL}}<small>{{registro?.dateReciboL}}</small>
+                </div>
+                <div class="timeline-dot teal-bg"></div>
+                <div class="timeline-content teal">
+                  <h4>Orden Liberada <mat-icon>inventory</mat-icon>
+                  </h4>
+                </div>
+              </div>
+              <!--Mercanica a Transito-->
+              <div class="timeline-row" *ngIf="registro?.date_Transito">
+                <div class="timeline-time">
+                  {{registro?.timeTransito.substring(0,5)}}<small>{{registro?.date_Transito}}</small>
+                </div>
+                <div class="timeline-dot sea-green-bg"></div>
+                <div class="timeline-content sea-green">
+                  <h4>
+                    <mat-icon>directions_transit</mat-icon> Mercancia en Transito
+                  </h4>
+                </div>
+              </div>
+              <!--Mercancia en Almacen-->
+              <div class="timeline-row" *ngIf="registro?.date_Almacen">
+                <div class="timeline-time">
+                  {{registro?.timeAlmacen.substring(0,5)}}<small>{{registro?.date_Almacen}}</small>
+                </div>
+                <div class="timeline-dot sea-green-bg"></div>
+                <div class="timeline-content sea-green">
+                  <h4>Mercancia en Alamcen <mat-icon>warehouse</mat-icon>
+                  </h4>
+                </div>
+              </div>
+            </div>
+            <!-- Timeline end -->
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>

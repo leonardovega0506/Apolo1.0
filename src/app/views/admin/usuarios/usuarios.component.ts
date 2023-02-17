@@ -7,41 +7,47 @@ import { AndService } from 'src/app/services/api/and.service';
   templateUrl: './usuarios.component.html',
   styleUrls: ['./usuarios.component.css']
 })
-export class UsuariosComponent implements OnInit{
-
-  users:any=[];
-  usuarioData={
-    username:'',
-    password:'',
-    nombre:'',
-    area:'',
+export class UsuariosComponent implements OnInit {
+  //Atributos
+  users: any = [];
+  usuarioData = {
+    username: '',
+    password: '',
+    nombre: '',
+    area: '',
   }
 
+  //Constructor
+  constructor(private andService: AndService, private modal: NgbModal) { }
 
-  constructor(private andService:AndService,private modal:NgbModal){}
-
+  //Inicio del Proyecto
   ngOnInit(): void {
+    //Listar Usuarios
     this.andService.listaUsuarios().subscribe(
-      (data) =>{
-        this.users= data;
+      (data) => {
+        this.users = data;
       },
-      (error) =>{
+      (error) => {
         console.log(error);
       }
     );
   }
+
+  //Abrir ventana modal para crear un usuario nuevo
   open(usuarioNuevo) {
     this.modal.open(usuarioNuevo, { size: 'lg' });
   }
-  crearUsuario(){
+
+  //Metodo para crear un usuario
+  crearUsuario() {
     this.andService.crearUsuario(this.usuarioData).subscribe(
-      (data) =>{
-       this.ngOnInit();
-       this.modal.dismissAll();
+      (data) => {
+        this.ngOnInit();
+        this.modal.dismissAll();
       },
-      (error) =>{
+      (error) => {
         console.log(error);
       }
-      );
+    );
   }
 }

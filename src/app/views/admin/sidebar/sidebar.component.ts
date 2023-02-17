@@ -8,10 +8,14 @@ import { LoginService } from 'src/app/services/login/login.service';
 })
 export class SidebarComponent implements OnInit{
 
+  //Inicio del proyecto
   ngOnInit(): void {
   }
+
+  //Constructor
   constructor(public login:LoginService){}
 
+  //Metodo para cerrar sesion
   logout(){
     this.login.logout();
     window.location.reload();

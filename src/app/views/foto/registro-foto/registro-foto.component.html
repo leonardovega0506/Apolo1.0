@@ -35,3 +35,56 @@
     </table>
   </div>
 </div>
+<!--Encabezado principal-->
+<section class="intro">
+  <div class="bg-image h-100" style="background-color: transparent;">
+    <div class="mask d-flex align-items-center h-100">
+      <div class="container">
+        <br><br>
+        <!--Titulo-->
+        <h2>
+          <mat-icon>access_time</mat-icon>Registros
+        </h2>
+        <br>
+        <br>
+        <!--Inicio de la Tabla-->
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body p-0">
+                <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true"
+                  style="position: relative; height: 700px">
+                  <table class="table table-striped mb-0">
+                    <thead style="background-color: #634A97; color: #f5f7fa;">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Estatus</th>
+                        <th scope="col">Fecha Transito</th>
+                        <th scope="col">Hora Transito</th>
+                        <th scope="col">Fecha Almacen</th>
+                        <th scope="col">Hora Almacen</th>
+                        <th scope="col">Accion</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let registro of registros">
+                      <tr *ngIf="registro.estatus == 'En Transito' || registro.estatus=='En Almacen'">
+                      <td>{{registro.idRegistro}}</td>
+                      <td>{{registro.estatus}}</td>
+                      <td>{{registro.date_Transito}}</td>
+                      <td>{{registro.timeTransito}}</td>
+                      <td>{{registro.date_Almacen}}</td>
+                      <td>{{registro.timeAlmacen}}</td>
+                      <td><button mat-raised-button class="btnAgregar" (click)="accionesRegistro(registro.idRegistro)">Acciones</button></td>
+                  </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Fin Tabla-->
+      </div>
+    </div>
+  </div>
+</section>

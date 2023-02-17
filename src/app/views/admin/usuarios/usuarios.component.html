@@ -1,73 +1,99 @@
-<div class="container">
-    <br>
-    <br>
-    <br>
-    <br>
-    <div>
-      <button type="button" class="btn btn-success" (click)="open(usuarioNuevo)">Crear Registro</button>
+  <!--Encabezado principal-->
+  <section class="intro">
+    <div class="bg-image h-100" style="background-color: transparent;">
+      <div class="mask d-flex align-items-center h-100">
+        <div class="container">
+          <br><br>
+          <!--Titulo-->
+          <h2>
+            <mat-icon>people</mat-icon>Usuarios
+          </h2>
+          <br>
+          <br>
+          <!--Agregar Registro-->
+          <button type="button" class="btn btnAgregar" (click)="open(usuarioNuevo)">
+            <mat-icon style="width: 80%;">person_add</mat-icon> Crear Usuario
+          </button>
+          &nbsp;&nbsp;
+          <br><br>
+          <!--Inicio de la Tabla-->
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body p-0">
+                  <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true"
+                    style="position: relative; height: 700px">
+                    <table class="table table-striped mb-0">
+                      <!--Cabecero de la tabla-->
+                      <thead style="background-color: #634A97; color: #f5f7fa;">
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Area</th>
+                        <th scope="col">Estado</th>
+                      </thead>
+                      <!--Cuerpo de la Tabla-->
+                      <tbody *ngFor="let user of users" style="background-color: transparent;">
+                        <tr>
+                          <td>{{user.username}}</td>
+                          <td>{{user.nombre}}</td>
+                          <td>{{user.area}}</td>
+                          <td>{{user.enabled ? "Activo":"Inactivo"}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Fin Tabla-->
+        </div>
+      </div>
     </div>
-    <br>
-    <br>
-    <div class="row">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Usuario</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Area</th>
-            <th scope="col">Estado</th>
-          </tr>
-          <tr *ngFor="let user of users">
-            <td>{{user.username}}</td>
-            <td>{{user.nombre}}</td>
-            <td>{{user.area}}</td>
-            <td>{{user.enabled ? "Activo":"Inactivo"}}</td>
-          </tr>
-        </thead>
-        <tbody>
-    
-        </tbody>
-      </table>
-    </div>
-  </div>
+  </section>
   <!--Ventana Modal Crear Orden-->
-<ng-template #usuarioNuevo let-modal>
-  <form (ngSubmit)="crearUsuario()">
-    <div class="modal-header">
-      <h4 class="modal-title">Titulo Modal</h4>
-      <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <div class="col">
-        <label for="ejemplo">Nombre de Usuario</label>
-        <input type="text" [(ngModel)]="usuarioData.nombre" class="form-control" name="nombre"
-          placeholder="Nombre de Usuario">
+  <ng-template #usuarioNuevo let-modal>
+    <form (ngSubmit)="crearUsuario()">
+      <div class="modal-header fondo-cabecera">
+        <h4 class="modal-title">Titulo Modal</h4>
+        <button class="btn close" aria-label="close" type="button" (click)="modal.dismiss()">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <div class="col">
-        <label for="ejemplo">Usuario</label>
-        <input type="text" [(ngModel)]="usuarioData.username" class="form-control" name="username"
-          placeholder="usuario">
+      <!--Nombrel Usuario-->
+      <div class="modal-body fondo-modal">
+        <div class="col">
+          <label for="ejemplo">Nombre de Usuario</label>
+          <input type="text" [(ngModel)]="usuarioData.nombre" class="form-control" name="nombre"
+            placeholder="Nombre de Usuario">
+        </div>
+        <!--Usuario-->
+        <div class="col">
+          <label for="ejemplo">Usuario</label>
+          <input type="text" [(ngModel)]="usuarioData.username" class="form-control" name="username"
+            placeholder="usuario">
+        </div>
+        <!--Contraseña-->
+        <div class="col">
+          <label for="ejemplo">Contraseña</label>
+          <input type="password" [(ngModel)]="usuarioData.password" class="form-control" name="docDate"
+            placeholder="password">
+        </div>
+        <!--Area-->
+        <div class="col">
+          <label for="area">Area</label>
+          <select class="form-control" name="area" id="area" [(ngModel)]="usuarioData.area">
+            <option>ADMIN</option>
+            <option>ALMACEN</option>
+            <option>COMPRAS</option>
+            <option>FOTO</option>
+            <option>RECIBO</option>
+          </select>
+        </div>
       </div>
-      <div class="col">
-        <label for="ejemplo">Contraseña</label>
-        <input type="password" [(ngModel)]="usuarioData.password" class="form-control" name="docDate" placeholder="password">
+      <div class="modal-footer">
+        <button type="submit" class="btn btnAgregar">Guardar Orden</button>
+        <button type="button" class="btn btnCerrar" (click)="modal.close()">Cerrar</button>
       </div>
-      <div class="col">
-        <label for="area">Area</label>
-        <select class="form-control" name="area" id="area" [(ngModel)]="usuarioData.area">
-          <option>ADMIN</option>
-          <option>ALMACEN</option>
-          <option>COMPRAS</option>
-          <option>FOTO</option>
-          <option>RECIBO</option>
-        </select>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button type="submit" class="btn btn-success">Guardar Orden</button>
-      <button type="button" class="btn btn-danger" (click)="modal.close()">Cerrar</button>
-    </div>
-  </form>
-</ng-template>
+    </form>
+  </ng-template>

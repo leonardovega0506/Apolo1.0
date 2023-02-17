@@ -7,19 +7,21 @@ import { AndService } from 'src/app/services/api/and.service';
   templateUrl: './productos-almacen.component.html',
   styleUrls: ['./productos-almacen.component.css']
 })
-export class ProductosAlmacenComponent implements OnInit{
+export class ProductosAlmacenComponent implements OnInit {
 
+  //Atributos
+  items: any = [];
+  item: any;
+  constructor(private router: Router, private andService: AndService) { }
 
-  items:any=[];
-  item:any;
-  constructor(private router:Router, private andService:AndService){}
-
+  //Inicio del Proyecto
   ngOnInit(): void {
+    //Lista de Items
     this.andService.listaItems().subscribe(
-      (data) =>{
-        this.items=data;
+      (data) => {
+        this.items = data;
       },
-      (error) =>{
+      (error) => {
         console.log(error);
       }
     );

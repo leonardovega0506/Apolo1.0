@@ -1,26 +1,51 @@
-<div class="container">
-  <br>
-  <br>
-    <h2>Items</h2>
-  <br>
-  <br>
-  <div class="row">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Codigo</th>
-          <th scope="col">Descripcion</th>
-          <th>Detalle</th>
-        </tr>
-      </thead>
-      <tbody *ngFor="let item of items">
-        <tr>
-            <td>{{item.itemCode}}</td>
-            <td>{{item.itemName}}</td>
-            <td><button>Detalle</button></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+<!--Encabezado principal-->
+<section class="intro">
+  <div class="bg-image h-100" style="background-color: transparent;">
+    <div class="mask d-flex align-items-center h-100">
+      <div class="container">
+        <br><br>
+        <!--Titulo-->
+        <h2>
+          <mat-icon>folder</mat-icon>Productos
+        </h2>
+        <br>
+        <br>
+        <!--Agregar Registro-->
+        <button type="button" class="btn btnAgregar" routerLink="/admin/agregar-item">
+          <mat-icon style="width: 80%;">add</mat-icon> Crear Registro
+        </button>
+        &nbsp;&nbsp;
 
+        <!--Inicio de la Tabla-->
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body p-0">
+                <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true"
+                  style="position: relative; height: 700px">
+                  <table class="table table-striped mb-0">
+                    <!--Cabecero de la tabla-->
+                    <thead style="background-color: #634A97; color: #f5f7fa;">
+                      <tr>
+                        <th scope="col">Codigo</th>
+                        <th scope="col">Descripcion</th>
+                      </tr>
+                    </thead>
+                    <!--Cuerpo de la Tabla-->
+                    <tbody *ngFor="let item of items" style="background-color: transparent;">
+                      <tr>
+                        <td>{{item.itemCode}}</td>
+                        <td>{{item.itemName}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Fin Tabla-->
+      </div>
+    </div>
+  </div>
+</section>

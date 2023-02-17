@@ -9,9 +9,15 @@ import { AndService } from 'src/app/services/api/and.service';
 })
 export class RegistrosAlmacenComponent implements OnInit {
 
+  //Atributos
+  registros: any = [];
+
+  //Constructor
   constructor(private router: Router, private andService: AndService) { }
 
+  //Inicio del Componente
   ngOnInit(): void {
+    //Lista de Registros
     this.andService.listarRegistros().subscribe(
       (data) => {
         this.registros = data;
@@ -22,8 +28,7 @@ export class RegistrosAlmacenComponent implements OnInit {
     );
   }
 
-  registros: any = [];
-
+  //Ruta para ir al componente Acciones
   accionesRegistro(idRegistro: any) {
     this.router.navigate(['/almacen/acciones-almacen', idRegistro]);
   }

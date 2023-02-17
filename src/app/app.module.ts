@@ -16,7 +16,6 @@ import { DashboardComprasComponent } from './views/compras/dashboard-compras/das
 import { DashboardFotoComponent } from './views/foto/dashboard-foto/dashboard-foto.component';
 import { RegistrosCompletosComponent } from './views/admin/registros-completos/registros-completos.component';
 import { SidebarComponent } from './views/admin/sidebar/sidebar.component';
-import { NavbarComponent } from './views/admin/navbar/navbar.component';
 import { OrdenesAdminComponent } from './views/admin/ordenes-admin/ordenes-admin.component';
 import { ItemAdminComponent } from './views/admin/item-admin/item-admin.component';
 import { UsuariosComponent } from './views/admin/usuarios/usuarios.component';
@@ -68,7 +67,6 @@ import {MatIconModule} from '@angular/material/icon';
     DashboardFotoComponent,
     RegistrosCompletosComponent,
     SidebarComponent,
-    NavbarComponent,
     OrdenesAdminComponent,
     ItemAdminComponent,
     UsuariosComponent,

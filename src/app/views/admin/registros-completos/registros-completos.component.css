@@ -1,10 +1,24 @@
-.btnAgregar{
-    background-color: #C81E6E;
-}
-.btnAgregar:hover{
+ .btnAgregar {
     background-color: #634A97;
     color: #fff;
 }
+.btnAgregar:hover{
+    background-color: #3CC3C8;
+    color: #fff;
+  }
+  .btnDetalles{
+    background-color: #FF5078;
+    color:  #fff;
+  }
+  .btnDetalles:hover{
+    background-color: #FF5078;
+    color: #fff;
+  }
+  .btnCerrar:hover{
+    background-color: lightgrey;
+    color: #000;
+  }
+
 
 table td,
 table th {
@@ -31,4 +45,15 @@ thead th {
 thead {
   top: 0;
   position: sticky;
+}
+.fondo-modal{
+  height: 30vh;
+  background-size: cover;
+  width: 100%;
+  padding-top: 50px;
+  background:url(/assets/bg-pattern.png);
+}
+.fondo-cabecera{
+  background-color: #634A97;
+  color: #fff;
 }

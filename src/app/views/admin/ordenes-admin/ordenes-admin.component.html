@@ -1,51 +1,76 @@
-<div class="container">
-  <br>
-  <br>
-  <br>
-  <br>
-  <div>
-    <button type="button" class="btn btn-success" (click)="openCreateOrder(ordenNueva)">Crear Orden</button>
-    &nbsp;&nbsp;
-    <button type="button" class="btn btn-danger" (click)="openBuscarOrder(buscarOrden)">Buscar Orden</button>
+<!--Encabezado principal-->
+<section class="intro">
+  <div class="bg-image h-100" style="background-color: transparent;">
+    <div class="mask d-flex align-items-center h-100">
+      <div class="container">
+        <br><br>
+        <!--Titulo-->
+        <h2>
+          <mat-icon>folder</mat-icon>Ordenes
+        </h2>
+        <br>
+        <br>
+        <!--Agregar Registro-->
+        <button type="button" class="btn btnAgregar" (click)="openCreateOrder(ordenNueva)">
+          <mat-icon style="width: 80%;">add</mat-icon> Crear Registro
+        </button>
+        &nbsp;&nbsp;
+        <!--Buscar Registros-->
+        <button type="button" class="btn btnBuscar" (click)="openBuscarOrder(buscarOrden)">
+          <mat-icon style="width: 80%;">search</mat-icon> Buscar Orden
+        </button>
+        <br><br>
+        <!--Inicio de la Tabla-->
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body p-0">
+                <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true"
+                  style="position: relative; height: 700px">
+                  <table class="table table-striped mb-0">
+                    <!--Cabecero de la tabla-->
+                    <thead style="background-color: #634A97; color: #f5f7fa;">
+                      <tr>
+                        <th scope="col">Numero de Orden</th>
+                        <th scope="col">Numero de Entrada</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Orden Nueva</th>
+                        <th>Accion</th>
+                      </tr>
+                    </thead>
+                    <!--Cuerpo de la Tabla-->
+                    <tbody *ngFor="let orden of ordenes" style="background-color: transparent;">
+                      <tr>
+                        <td>{{orden.docNum}}</td>
+                        <td>{{orden.docEntry}}</td>
+                        <td>{{orden.docTotal}}</td>
+                        <td>{{orden.docDate}}</td>
+                        <td>{{orden.docEntry ? "No":"Si"}}</td>
+                        <td><button mat-raised-button class="btn btnDetalles" [routerLink]="'/admin/asignarProducto/'+orden?.idOrdenCompra">Detalles</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Fin Tabla-->
+      </div>
+    </div>
   </div>
-  <br>
-  <br>
-  <div class="row">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Numero de Orden</th>
-          <th scope="col">Numero de Entrada</th>
-          <th scope="col">Total</th>
-          <th scope="col">Fecha</th>
-          <th scope="col">Orden Nueva</th>
-        </tr>
-        <tr *ngFor="let orden of ordenes">
-          <td>{{orden.docNum}}</td>
-          <td>{{orden.docEntry}}</td>
-          <td>{{orden.docTotal}}</td>
-          <td>{{orden.docDate}}</td>
-          <td>{{orden.docEntry ? "No":"Si"}}</td>
-          <td><button class="btn btn-warning" [routerLink]="'/admin/asignarProducto/'+orden?.idOrdenCompra">Detalles</button></td>
-        </tr>
-      </thead>
-      <tbody>
-      </tbody>
-    </table>
-  </div>
-</div>
-<br>
-<br>
+</section>
 <!--Ventana Modal Crear Orden-->
 <ng-template #ordenNueva let-modal>
   <form (ngSubmit)="crearOrden()">
-    <div class="modal-header">
+    <div class="modal-header fondo-cabecera">
       <h4 class="modal-title">Titulo Modal</h4>
-      <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+      <button class="btn close" aria-label="close" type="button" (click)="modal.dismiss()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <div class="modal-body">
+    <div class="modal-body fondo-modal">
       <div class="col">
         <label for="ejemplo">Numero de Entrada</label>
         <input type="text" [(ngModel)]="ordenData.docEntry" class="form-control" name="docEntry"
@@ -77,8 +102,8 @@
       </div>
     </div>
     <div class="modal-footer">
-      <button type="submit" class="btn btn-success">Guardar Orden</button>
-      <button type="button" class="btn btn-danger" (click)="modal.close()">Cerrar</button>
+      <button type="submit" class="btn btnAgregar">Guardar Orden</button>
+      <button type="button" class="btn btnCerrar" (click)="modal.close()">Cerrar</button>
     </div>
   </form>
 </ng-template>
@@ -86,13 +111,13 @@
 <!--Ventana Modal Buscar Orden-->
 <ng-template #buscarOrden let-modal>
   <form (ngSubmit)="buscarOrder()">
-    <div class="modal-header">
+    <div class="modal-header fondo-cabecera">
       <h4 class="modal-title">Titulo Modal</h4>
-      <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+      <button class="btn close" aria-label="close" type="button" (click)="modal.dismiss()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <div class="modal-body">
+    <div class="modal-body fondo-modal-buscar">
       <div class="col">
         <label for="ejemplo">Numero de Entrada</label>
         <input type="text" [(ngModel)]="ordenData.docEntry" class="form-control" name="docEntry"
@@ -100,7 +125,7 @@
       </div>
     </div>
     <div class="modal-footer">
-      <button type="submit" class="btn btn-success">Buscar</button>
+      <button type="submit" class="btn btnBuscar">Buscar</button>
     </div>
   </form>
 </ng-template>
