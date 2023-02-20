@@ -1,111 +1,151 @@
-<div>
-    <h2>Orden Traida</h2>
-    <hr>
-    <div>
-      <div>
-        <h5>Numero de Orden</h5>
-        <span>{{orden?.docNum}}</span>
-      </div>
-      <div>
-        <h5>Numero de Entrada</h5>
-        <span>{{orden?.docEntry}}</span>
-      </div>
-      <div>
-        <h5>Total de la Orden</h5>
-        <span>{{orden?.docTotal}}</span>
-      </div>
-      <div>
-        <h5>Fecha de la Orden</h5>
-        <span>{{orden?.docDate}}</span>
-      </div>
-      <div>
-        <h5>Nombre del Proveedor</h5>
-        <span>{{orden?.cardName}}</span>
-      </div>
-      <div>
-        <a type="button" (click)="asignarProductos()">AsignarProductos</a>
-        <button (click)="regresar()">Regresar</button>
+<!--Inicio del Detalle de Orden-->
+<div class="container py-4 my-4 mx-auto d-flex flex-column">
+  <div class="header">
+    <div class="row r1">
+      <!--Descripcion-->
+      <div class="col-md-9 abc">
+        <h1>{{orden?.docNum}}</h1>
       </div>
     </div>
   </div>
-  <div class="container" *ngIf="asignacion== true">
-    <br>
-    <br>
-    <h1>Items</h1>
-    <hr>
-    <td><button class="btn btn-success" type="button" (click)="open(item)">Agregar</button></td>
-    <div class="row">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Codigo</th>
-            <th scope="col">Descripcion</th>
-            <th scope="col">Precio</th>
-            <th scope="col">Cantidad</th>
-            <th scope="col">Resurtido</th>
-          </tr>
-          <tr *ngFor="let detalle of orden?.detalleOrden">
-            <td>{{detalle.itemCode}}</td>
-            <td>{{detalle.itemDescription}}</td>
-            <td>{{detalle.precio}}</td>
-            <td>{{detalle.cantidad}}</td>
-            <td *ngIf="detalle.resurtido == 'tNO'">Si</td>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
+  <!--Datos-->
+  <div class="container-body mt-4">
+    <div class="row r3">
+      <div class="col-md-5 p-0 klo">
+        <button  class=" btn btnAgregar" *ngIf="!orden?.docNum" (click)="openBuscarOrden(buscarOrden)">Asignar Orden desde SAP</button>
+        <br><br>
+        <ul>
+          <li>
+            <h6>Numero de Entrada:</h6> {{orden?.docEntry}}
+          </li>
+          <li>
+            <h6>Total:</h6> {{orden?.docTotal}}
+          </li>
+          <li>
+            <h6>Fecha:</h6> {{orden?.docDate}}
+          </li>
+          <li>
+            <h6>Nombre del Proveedor:</h6> {{orden?.cardName}}
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
-  <ng-template #item let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title">Agregar Item a Orden de Compra</h4>
+  <!--Botones-->
+  <div class="footer d-flex flex-column mt-5">
+    <div class="row r4">
+      <div class="col-md-2 myt "><button type="button" class="btn btn-Regresar">
+          <mat-icon style="width: 50%;">arrow_back</mat-icon><a (click)="regresar()">Regresar</a>
+        </button></div>
+      <div class="col-md-2 myt "><button type="button" class="btn btn-outlineEditar">
+          <mat-icon style="width: 90%;">add</mat-icon><a (click)="asignarProductos()">Ver Productos</a>
+        </button></div>
+    </div>
+  </div>
+</div>
+<!--Productos de la Orden-->
+<button *ngIf="asignacion== true" class="btn btnAgregar" type="button" (click)="open(item)"><mat-icon style="width: 50%;">add</mat-icon> Agregar</button>
+<div class="container d-flex justify-content-center mt-50 mb-50"  *ngIf="asignacion== true">
+  <table>
+    <tr *ngFor="let detalle of orden?.detalleOrden">
+      <div class="row">
+        <div class="col-md-10">
+          <div class="card card-body">
+            <div class="media align-items-center align-items-lg-start text-center text-lg-left flex-column flex-lg-row" >
+              <div class="mr-2 mb-3 mb-lg-0">
+                <!--Imagen-->
+                <img src="http://104.36.166.251:5757/fotos_productos/{{detalle.itemCode}}.jpg" width="150" height="150" alt="">
+              </div>
+              <!--Datos-->
+              <div class="media-body">
+                <h6 class="media-title font-weight-semibold">
+                  <p data-abc="true">{{detalle.itemDescription}}</p>
+                </h6>
+                <p class="mb-3"><b>Codigo del Articulo: &nbsp;</b>{{detalle.itemCode}}</p>
+                <p class="mb-3"><b>Precio: &nbsp;</b>{{detalle.precio}}</p>
+                <p class="mb-3"><b>Cantidad: &nbsp;</b>{{detalle.cantidad}}</p>
+                <p class="mb-3" *ngIf="detalle.resurtido == 'tNO'"><b>Resurtido: &nbsp;</b>Si</p>
+                <p class="mb-3" *ngIf="detalle.resurtido == 'tYES'"><b>Resurtido: &nbsp;</b>No</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br><br>
+    </tr>
+</table>
+</div>
+<!--Ventana Modal para agregar productos-->
+<ng-template #item let-modal>
+  <!--Cabecera-->
+  <div class="modal-header fondo-cabecera">
+    <h4 class="modal-title">Agregar Item a Orden de Compra</h4>
+    <button class="btn close" aria-label="close" type="button" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <!--Cuerpo-->
+  <div class="modal-body fondo-modal">
+    <div class="col">
+      <p>¿Cuenta con el codigo del articulo?</p>
+      <p>Digitelo</p>
+      <p>
+        <input type="text" name="itemCode" [(ngModel)]="itemCode">&nbsp;
+        <button mat-raised-button class="btn btnBuscar" (click)="buscarItemCode()">Buscar</button>
+      </p>
+      <div *ngIf="errorMsg != null">
+        <span>Este Item no existe, ¿Desea Agregarlo?</span>
+      </div>
+    </div>
+    <div *ngIf="verificacion == true">
+      <div class="col">
+        <label for="ejemplo">Codigo del Articulo</label>
+        <input type="text" class="form-control" [(ngModel)]="itemCode" name="itemCode"
+          placeholder="Codigo del Articulo">
+      </div>
+      <div class="col">
+        <label for="ejemplo">Cantidad</label>
+        <input type="text" class="form-control" [(ngModel)]="cantidad" name="cantidad" placeholder="Numero de Orden">
+      </div>
+      <div class="col">
+        <label for="ejemplo">Precio</label>
+        <input type="text" class="form-control" [(ngModel)]="precio" name="precio" placeholder="Numero de Entrada">
+      </div>
+      <br>
+      <button type="button" class="btn btnAgregar" (click)="agregarOrden()">Agregar Orden</button>
+      &nbsp;
+      <button type="button" class="btn btnCerrar" (click)="modal.close()">Cerrar</button>
+    </div>
+    <div *ngIf="verificacion== false">
+      <button type="button" class="btn btnAgregar" (click)="agregarItem()">Agregar Item</button>
+      &nbsp;
+      <button type="button" class="btn btnCerrar" (click)="modal.close()">Cerrar</button>
+    </div>
+  </div>
+  <!--Pie-->
+  <div class="modal-footer">
+  </div>
+</ng-template>
+<!--Ventana Modal Buscar Orden-->
+<ng-template #buscarOrden let-modal>
+  <form (ngSubmit)="buscarOrder()">
+    <div class="modal-header fondo-cabecera">
+      <h4 class="modal-title">Titulo Modal</h4>
       <button class="btn close" aria-label="close" type="button" (click)="modal.dismiss()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <div class="modal-body">
+    <div class="modal-body fondo-modal-buscar">
       <div class="col">
-        <p>¿Cuenta con el codigo del articulo?</p>
-        <p>Digitelo</p>
-        <p>
-          <input type="text" name="itemCode" [(ngModel)]="itemCode">
-          <button (click)="buscarItemCode()">Buscar</button>
-        </p>
-        <div *ngIf="errorMsg != null">
-          <span>Este Item no existe, ¿Desea Agregarlo?</span>
-        </div>
-  
-  
-      </div>
-      <div *ngIf="verificacion == true">
-        <div class="col">
-          <label for="ejemplo">Codigo del Articulo</label>
-          <input type="text" class="form-control" [(ngModel)]="itemCode" name="itemCode"
-            placeholder="Codigo del Articulo">
-        </div>
-        <div class="col">
-          <label for="ejemplo">Cantidad</label>
-          <input type="text" class="form-control" [(ngModel)]="cantidad" name="cantidad" placeholder="Numero de Orden">
-        </div>
-        <div class="col">
-          <label for="ejemplo">Precio</label>
-          <input type="text" class="form-control" [(ngModel)]="precio" name="precio" placeholder="Numero de Entrada">
-        </div>
-        <br>
-        <button type="button" class="btn btn-success" (click)="agregarOrden()">Agregar Orden</button>
-        &nbsp;
-        <button type="button" class="btn btn-warning" (click)="modal.close()">Cerrar</button>
-      </div>
-      <div *ngIf="verificacion== false">
-          <button type="button" class="btn btn-success" (click)="agregarItem()">Agregar Item</button>
-          &nbsp;
-          <button type="button" class="btn btn-warning" (click)="modal.close()">Cerrar</button>
+        <label for="ejemplo">Numero de Entrada</label>
+        <input type="text" [(ngModel)]="ordenData.docEntry" class="form-control" name="docEntry"
+          placeholder="Numero de Entrada">
       </div>
     </div>
     <div class="modal-footer">
+      <button type="submit" class="btn btnBuscar">Buscar</button>
     </div>
-  </ng-template>
-  
-  
-  
+  </form>
+</ng-template>
+<!--Cerrar Ventana Modal Buscar Orden-->
+

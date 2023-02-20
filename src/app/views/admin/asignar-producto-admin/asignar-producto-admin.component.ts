@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AndService } from 'src/app/services/api/and.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-asignar-producto-admin',
@@ -68,27 +69,43 @@ export class AsignarProductoAdminComponent implements OnInit {
 
   //Metodo para asignar una orden desde SAP
   agregarOrden() {
-    if (document.getElementById('resurtidoSi')) {
-      this.andService.agregarItemR(this.itemCode, this.cantidad, this.precio, this.idOrden).subscribe(
-        (data) => {
-          this.modal.dismissAll();
-          this.ngOnInit();
-        },
-        (error) => {
-          console.log(error);
+    Swal.fire({
+      icon: 'question',
+      title: "Agregar Orden",
+      text: "¿Desea Agregar Orden?",
+      showCancelButton: true,
+      confirmButtonColor: '#3CC3C8',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Agregar',
+      cancelButtonText: 'Cancelar'
+    }).then(
+      (e) => {
+        if (e.isConfirmed) {
+          if (document.getElementById('resurtidoSi')) {
+            this.andService.agregarItemR(this.itemCode, this.cantidad, this.precio, this.idOrden).subscribe(
+              (data) => {
+                this.modal.dismissAll();
+                this.ngOnInit();
+              },
+              (error) => {
+                console.log(error);
+              }
+            );
+          }
+          else if (document.getElementById('resurtidoNo')) {
+            this.andService.agregarItemN(this.itemCode, this.cantidad, this.precio, this.idOrden).subscribe(
+              (data) => {
+                console.log(data);
+              },
+              (error) => {
+                console.log(error);
+              }
+            );
+          }
         }
-      );
-    }
-    else if (document.getElementById('resurtidoNo')) {
-      this.andService.agregarItemN(this.itemCode, this.cantidad, this.precio, this.idOrden).subscribe(
-        (data) => {
-          console.log(data);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    }
+      }
+    );
+
   }
 
   //Metodo para agregar un producto
@@ -99,36 +116,68 @@ export class AsignarProductoAdminComponent implements OnInit {
 
   //Metodo para Buscar un item por itemCode
   buscarItemCode() {
-    this.andService.obtenerItemByItemCode(this.itemCode).subscribe(
-      (data) => {
+    Swal.fire({
+      icon: 'question',
+      title: "Buscar Producto",
+      text: "¿Desea Buscar el producto?",
+      showCancelButton: true,
+      confirmButtonColor: '#3CC3C8',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Buscar',
+      cancelButtonText: 'Cancelar'
+    }).then(
+      (e) => {
+        if (e.isConfirmed) {
+          this.andService.obtenerItemByItemCode(this.itemCode).subscribe(
+            (data) => {
 
-        this.itemTraido = data
+              this.itemTraido = data
 
-      },
-      (error) => {
-        this.errorMsg == error.mensaje;
-        alert("No existe ese articulo");
+            },
+            (error) => {
+              this.errorMsg == error.mensaje;
+              Swal.fire('Error al Buscar', "Error", "error")
+            }
+          );
+        }
       }
-    );
+    )
+
   }
 
   //Metodo para abrir el div del detalle de la orden
   asignarProductos() {
     this.asignacion = true;
-
   }
 
   //Metodo para buscar la orden
   buscarOrder() {
-    this.andService.asignarOrden(this.ordenData.docEntry, this.idOrden).subscribe(
-      (data) => {
-        this.ngOnInit();
-        this.modal.dismissAll();
-      },
-      (error) => {
-        console.log(error);
+    Swal.fire({
+      icon: 'question',
+      title: "Buscar Orden",
+      text: "¿Desea Buscar la orden?",
+      showCancelButton: true,
+      confirmButtonColor: '#3CC3C8',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Buscar',
+      cancelButtonText: 'Cancelar'
+    }).then(
+      (e) => {
+        if (e.isConfirmed) {
+          this.andService.asignarOrden(this.ordenData.docEntry, this.idOrden).subscribe(
+            (data) => {
+              this.ngOnInit();
+              this.modal.dismissAll();
+              this.andService.andStatus.next(true);
+            },
+            (error) => {
+              Swal.fire('Error',"Error al bucsar orden","error");
+            }
+          );
+        }
       }
-    );
+    )
+
   }
 
   //Metodo para regresar al listado de ordenes

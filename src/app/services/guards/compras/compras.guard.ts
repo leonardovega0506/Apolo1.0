@@ -7,12 +7,15 @@ import { LoginService } from '../../login/login.service';
   providedIn: 'root'
 })
 export class ComprasGuard implements CanActivate {
-  
+
+  //Constructor
   constructor(private login:LoginService,private router:Router){}
 
+  //Guard para Compras
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+      //Verificacion
       if(this.login.isLoggedIn() && this.login.getUserRoles() == 'ROLE_COMPRAS' || this.login.getUserRoles() == 'ROLE_ADMIN'){
         return true;
       }

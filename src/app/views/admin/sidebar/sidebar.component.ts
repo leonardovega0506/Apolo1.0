@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login/login.service';
 
 @Component({
@@ -13,11 +14,12 @@ export class SidebarComponent implements OnInit{
   }
 
   //Constructor
-  constructor(public login:LoginService){}
+  constructor(public login:LoginService,private router:Router){}
+
 
   //Metodo para cerrar sesion
-  logout(){
+  logout() {
     this.login.logout();
-    window.location.reload();
+    this.router.navigate(["/login"]);
   }
 }

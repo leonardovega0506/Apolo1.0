@@ -1,18 +1,16 @@
 <div class="container">
-    <p>Orden de Compra</p>
+    <h1>Detalle de Registros</h1>
+    <h6>Orden de Compra: </h6>
     <p>{{registro?.ordenCompra.docNum}}</p>
-    <p>Estatus</p>
+    <h6>Estatus</h6>
     <p>{{registro?.estatus}}</p>
     <div *ngIf="registro?.estatus == 'Llegada a Recibo'">
-        <button (click)="generarAccionCompraMM(registro?.idRegistro)">Registrar Tiempo Mandar Muestra a compras</button>
-    </div>
-    <div *ngIf="registro?.estatus == 'Muestra Liberada'">
-        <button (click)="generarAccionTransito(registro?.idRegistro)">Registrar Tiempo Mandar a Transito</button>
+        <button mat-raised-button class="btnAgregar" (click)="generarAccionCompraMM(registro?.idRegistro)">Registrar Tiempo Mandar Muestra a compras</button>
     </div>
     <div *ngIf="registro?.estatus == 'Mercancia Liberada en Recibo'">
-        <button (click)="generarAccionReciboL(registro?.idRegistro)">Registrar Tiempo Liberar Mercancia</button>
+        <button mat-raised-button class="btnAgregar" (click)="generarAccionTransito(registro?.idRegistro)">Registrar Tiempo Mandar a Transito</button>
     </div>
     <div *ngIf="registro?.estatus == 'Llegada a Recibo, Con Orden'">
-        <button (click)="generarAccionTransito(registro?.idRegistro)">Registrar Tiempo Mandar a Transito</button> 
+        <button mat-raised-button class="btnAgregar" (click)="generarAccionTransito(registro?.idRegistro)">Registrar Tiempo Mandar a Transito</button>
     </div>
 </div>

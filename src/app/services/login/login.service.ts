@@ -7,8 +7,10 @@ import baseUrl from '../utils/helper';
 })
 export class LoginService {
 
+  //Constructor
   constructor(private http: HttpClient) { }
 
+  //Uri de la API
   baseAuth: string = `${baseUrl}/auth`
 
   //Generamos el token 
@@ -57,12 +59,12 @@ export class LoginService {
   }
 
   //Verificamos que el usuario este conectado
-  public isLoggedIn(){
+  public isLoggedIn() {
     let tokenStr = localStorage.getItem('token');
-    if(tokenStr == undefined || tokenStr == '' || tokenStr ==null){
+    if (tokenStr == undefined || tokenStr == '' || tokenStr == null) {
       return false;
     }
-    else{
+    else {
       return true;
     }
   }

@@ -1,12 +1,19 @@
 <div class="container">
-    <p>Orden de Compra</p>
-    <p>{{registro?.ordenCompra.docNum}}</p>
-    <p>Estatus</p>
-    <p>{{registro?.estatus}}</p>
-    <div *ngIf="registro?.estatus == 'Foto Tomada'">
-        <button (click)="generarAccionCompraMuestraL(registro?.idRegistro)">Registrar Tiempo Liebrear a Recibo</button>
-    </div>
-    <div *ngIf="registro?.estatus == 'Muestra a Compras'">
-        <button (click)="generarAccionCompraMF(registro?.idRegistro)">Registrar Tiempo  Mandar Muestra a Foto</button>
-    </div>
+  <h1>Detalle de Registros</h1>
+  <h6>Orden de Compra: </h6>
+  <p>{{registro?.ordenCompra.docNum}}</p>
+  <h6>Estatus</h6>
+  <p>{{registro?.estatus}}</p>
+  <div *ngIf="registro?.estatus == 'Foto Tomada'">
+    <button mat-raised-button class="btnAgregar" (click)="generarAccionCompraMuestraL(registro?.idRegistro)">Registrar
+      Tiempo Liebrear a Recibo</button>
+  </div>
+  <div *ngIf="registro?.estatus == 'Muestra a Compras'">
+    <button mat-raised-button class="btnAgregar" (click)="generarAccionCompraMF(registro?.idRegistro)">Registrar Tiempo
+      Mandar Muestra a Foto</button>
+  </div>
+  <div *ngIf="registro?.estatus == 'Muestra Liberada'">
+    <button mat-raised-button class="btnAgregar" (click)="generarAccionCompraMF(registro?.idRegistro)">Registrar Tiempo
+      Liberar Orden</button>
+  </div>
 </div>

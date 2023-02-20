@@ -1,19 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AndService } from 'src/app/services/api/and.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-agregar-item-compras',
   templateUrl: './agregar-item-compras.component.html',
   styleUrls: ['./agregar-item-compras.component.css']
 })
-export class AgregarItemComprasComponent implements OnInit{
-
-  itemData={
-    itemCode:'',
-    itemName:'',
-    ncmCode:'',
-    productoNuevo:'tYES'
+export class AgregarItemComprasComponent implements OnInit {
+  //Atributos
+  itemData = {
+    itemCode: '',
+    itemName: '',
+    ncmCode: '',
+    productoNuevo: 'tYES'
   };
   /*nuevoForm = new FormGroup({
     itemCode: new FormControl('',Validators.required),
@@ -109,7 +110,7 @@ export class AgregarItemComprasComponent implements OnInit{
     cat_AmorUS:new FormControl(),
     cat_DanzonCosmetics:new FormControl()
   });*/
-  
+
   /*listaNCM:NCMCodeI[] =[
     
 
@@ -470,7 +471,7 @@ export class AgregarItemComprasComponent implements OnInit{
     
 
         ];*/
-        
+
   /*listaGrupoArt:GrupoArtI[]=[];
         listaCodigoStore:CodigoSI[]=[
           new CodigoSI("A","ALTO"),
@@ -868,29 +869,49 @@ export class AgregarItemComprasComponent implements OnInit{
         new ClasificacionI("VOLTEADOR"),
         new ClasificacionI("YOYO")                                                                        
         ];*/
-        
-  
-        constructor(private router:Router,private andService:AndService) { }
-      
-  ngOnInit(): void {}
 
+  //Constructor
+  constructor(private router: Router, private andService: AndService) { }
 
-  regresar(){
+  //Inicio del componente
+  ngOnInit(): void { }
+
+  //Metodo para regresar
+  regresar() {
     this.router.navigate(['compras/items']);
   }
-  guardarItem(){
-    if(this.itemData.itemCode==null || this.itemData.itemCode=="" || this.itemData.itemCode == "0" || this.itemData.itemName==null || this.itemData.itemName=="" || this.itemData.itemCode == "0" || this.itemData.ncmCode==null || this.itemData.ncmCode=="" || this.itemData.ncmCode == "0"  ){
+
+  //Metodo para guardar el item
+  guardarItem() {
+    if (this.itemData.itemCode == null || this.itemData.itemCode == "" || this.itemData.itemCode == "0" || this.itemData.itemName == null || this.itemData.itemName == "" || this.itemData.itemCode == "0" || this.itemData.ncmCode == null || this.itemData.ncmCode == "" || this.itemData.ncmCode == "0") {
       alert("Verifique que estan ingresados los campos");
     }
-    else{
-    this.andService.crearItem(this.itemData).subscribe(
-      (data) =>{
-        this.router.navigate(['compras/items']);
-      },
-      (error) =>{
-        console.log(error);
-      }
-    );
+    //Verificacion
+    else {
+      Swal.fire({
+        icon: 'question',
+        title: "Crear Producto",
+        text: "¿Desea El Producto Orden?",
+        showCancelButton: true,
+        confirmButtonColor: '#3CC3C8',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Buscar',
+        cancelButtonText: 'Cancelar'
+      }).then(
+        (e) => {
+          if (e.isConfirmed) {
+            this.andService.crearItem(this.itemData).subscribe(
+              (data) => {
+                this.router.navigate(['compras/items']);
+              },
+              (error) => {
+                console.log(error);
+              }
+            );
+          }
+        }
+      );
+
     }
-}
+  }
 }

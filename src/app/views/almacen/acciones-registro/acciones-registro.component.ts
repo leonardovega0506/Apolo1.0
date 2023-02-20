@@ -7,28 +7,33 @@ import { AndService } from 'src/app/services/api/and.service';
   templateUrl: './acciones-registro.component.html',
   styleUrls: ['./acciones-registro.component.css']
 })
-export class AccionesRegistroComponent implements OnInit{
+export class AccionesRegistroComponent implements OnInit {
+  //Atribustos
+  idRegistro: any;
+  registro: any;
 
-  idRegistro:any;
-  registro:any;
-
-  constructor(private andService:AndService, private router:Router,private aRoute:ActivatedRoute){
+  //Constructor
+  constructor(private andService: AndService, private router: Router, private aRoute: ActivatedRoute) {
 
   }
+  
+  //Inicio del Componente
   ngOnInit(): void {
     this.idRegistro = this.aRoute.snapshot.paramMap.get('idRegistro');
     this.andService.obtenerRegistroByID(this.idRegistro).subscribe(
-      (data)=>{
+      (data) => {
         this.registro = data;
       },
-      (error) =>{
+      (error) => {
         console.log(error);
       }
     );
   }
-  generarAccion(idRegistro:any){
+
+  //Accion hacia el servicio de and
+  generarAccion(idRegistro: any) {
     this.andService.generarTiempoAlmacen(idRegistro).subscribe(
-      (data)=>{
+      (data) => {
         console.log(data);
         this.router.navigate(['almacen/registros']);
         this.ngOnInit();

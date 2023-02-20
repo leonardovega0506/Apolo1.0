@@ -1,12 +1,13 @@
 <div class="container">
-    <p>Orden de Compra</p>
+    <h1>Detalle de Registros</h1>
+    <h6>Orden de Compra: </h6>
     <p>{{registro?.ordenCompra.docNum}}</p>
-    <p>Estatus</p>
+    <h6>Estatus</h6>
     <p>{{registro?.estatus}}</p>
     <div *ngIf="registro?.estatus == 'Pendiente de Foto'">
-        <button (click)="generarAccion(registro?.idRegistro)">Registrar Tiempo Foto Tomada</button>
+        <button mat-raised-button class="btnAgregar" (click)="generarAccion(registro?.idRegistro)">Registrar Tiempo Almacen</button>
     </div>
-    <div *ngIf="registro?.estatus == 'Foto Tomada'">
+    <div *ngIf="registro?.estatus == 'En Almacen'">
         <p>Ya se ha terminado el Proceso</p>
     </div>
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AndService } from 'src/app/services/api/and.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-item-admin',
@@ -31,16 +32,31 @@ export class ItemAdminComponent implements OnInit {
 
   //Metodo para buscar un producto
   buscarItemCode() {
-    this.andService.obtenerItemByItemCode(this.itemCodeBuscar).subscribe(
-      (data) => {
-        this.item = data;
-        this.ngOnInit();
-        alert("Producto Buscado: " + this.item.itemName);
-        this.modal.dismissAll();
-      },
-      (error) => {
-        alert("No existe ese articulo");
-        this.modal.dismissAll();
+    Swal.fire({
+      icon: 'question',
+      title: "Buscar Producto",
+      text: "¿Desea Buscar el producto?",
+      showCancelButton: true,
+      confirmButtonColor: '#3CC3C8',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Buscar',
+      cancelButtonText: 'Cancelar'
+    }).then(
+      (e) => {
+        if (e.isConfirmed) {
+          this.andService.obtenerItemByItemCode(this.itemCodeBuscar).subscribe(
+            (data) => {
+              this.item = data;
+              this.ngOnInit();
+              Swal.fire("Exito", 'Producto Buscado: ' + this.item.itemName, 'success');
+              this.modal.dismissAll();
+            },
+            (error) => {
+              Swal.fire("Error", "No existe ese articulo", 'error');
+              this.modal.dismissAll();
+            }
+          )
+        }
       }
     );
   }

@@ -17,7 +17,7 @@ export class AgregarItemComponent implements OnInit {
     ncmCode: '',
     productoNuevo: 'tYES'
   };
-  
+
   /*nuevoForm = new FormGroup({
     itemCode: new FormControl('',Validators.required),
     ncmCode:new FormControl('',Validators.required),
@@ -885,22 +885,39 @@ export class AgregarItemComponent implements OnInit {
   //Metodo para crear Items
   guardarItem() {
     if (this.itemData.itemCode == null || this.itemData.itemCode == "" || this.itemData.itemCode == "0" || this.itemData.itemName == null || this.itemData.itemName == "" || this.itemData.itemCode == "0" || this.itemData.ncmCode == null || this.itemData.ncmCode == "" || this.itemData.ncmCode == "0") {
-      Swal.fire("Error","Favor de verificar los datos al ingresar","error");
+      Swal.fire("Error", "Favor de verificar los datos al ingresar", "error");
     }
+    //Verificacion
     else {
-      this.andService.crearItem(this.itemData).subscribe(
-        (data) => {
-          Swal.fire("Productos","Producto guardado correctamente","success").then(
-            (e) => {
-              this.router.navigate(['admin/items']);
-            }
-          );
-        },
-        (error) => {
-          Swal.fire("Error","Error la crera, intente de nuevo","error");
-          console.log(error);
+      Swal.fire({
+        icon: 'question',
+        title: "Guardar Producto",
+        text: "¿Desea Guardar el producto?",
+        showCancelButton: true,
+        confirmButtonColor: '#3CC3C8',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Guardar',
+        cancelButtonText: 'Cancelar'
+      }).then(
+        (e) => {
+          if (e.isConfirmed) {
+            this.andService.crearItem(this.itemData).subscribe(
+              (data) => {
+                Swal.fire("Productos", "Producto guardado correctamente", "success").then(
+                  (e) => {
+                    this.router.navigate(['admin/items']);
+                  }
+                );
+              },
+              (error) => {
+                Swal.fire("Error", "Error al crear producto, intente de nuevo", "error");
+                console.log(error);
+              }
+            )
+          }
         }
       );
     }
   }
 }
+

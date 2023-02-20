@@ -7,17 +7,19 @@ import { LoginService } from '../../login/login.service';
   providedIn: 'root'
 })
 export class FotoGuard implements CanActivate {
+  //Constructor
+  constructor(private login: LoginService, private router: Router) { }
 
-  constructor(private login:LoginService,private router:Router) {}
-
+  //Guard para Foto
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if(this.login.isLoggedIn() && this.login.getUserRoles() == 'ROLE_FOTO' || this.login.getUserRoles() == 'ROLE_ADMIN'){
-        return true;
-      }
-      this.router.navigate(['login']);
-      return false;
+    //Verificacion
+    if (this.login.isLoggedIn() && this.login.getUserRoles() == 'ROLE_FOTO' || this.login.getUserRoles() == 'ROLE_ADMIN') {
+      return true;
+    }
+    this.router.navigate(['login']);
+    return false;
   }
-  
+
 }

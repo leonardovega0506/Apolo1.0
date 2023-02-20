@@ -6,8 +6,10 @@ import { LoginService } from "../login/login.service";
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor{
 
+    //Constructor
     constructor(private login:LoginService){}
 
+    //Intercepetor para obtener el bearer token
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let authRequest = req;
         const token = this.login.getToken();
@@ -21,6 +23,8 @@ export class AuthInterceptor implements HttpInterceptor{
     }
 
 }
+
+//Exportamos el bearer de cada persona
 export const authInterceptorProviders = [
     {
         provide:HTTP_INTERCEPTORS,

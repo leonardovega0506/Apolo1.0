@@ -1,17 +1,30 @@
-<div class="container">
-    <h2>Detalles</h2>
-    <div class="row">
-        <div class="col-md-3">
-            <h6>Codigo del Articulo</h6>
-            <p>{{item?.itemCode}}</p>
+<!--Detalles del producto-->
+<div class="container py-4 my-4 mx-auto d-flex flex-column">
+    <div class="header">
+        <div class="row r1">
+          <!--Descripcion-->
+            <div class="col-md-9 abc">
+                <h1>{{item?.itemName}}</h1>
+            </div>
+            <div class="col-md-3 text-right pqr"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
         </div>
-        <div class="col-md-3">
-            <h6>Descripcion del Articulo</h6>
-            <p>{{item?.itemName}}</p>
-        </div>
-
     </div>
-    <img src="{{cadenaImg}}" width="300">
-    <button (click)="regresar()">Regresar</button>
-</div>
-
+    <!--Datos-->
+    <div class="container-body mt-4">
+        <div class="row r3">
+            <div class="col-md-5 p-0 klo">
+                <ul>
+                    <li><h6>Codigo del Articulo:</h6> {{item?.itemCode}}</li>
+                </ul>
+            </div>
+            <!--Imagen-->
+            <div class="col-md-7"> <img src="{{cadenaImg}}" width="90%" height="95%"> </div>
+        </div>
+    </div>
+    <!--Botones-->
+    <div class="footer d-flex flex-column mt-5">
+        <div class="row r4">
+            <div class="col-md-2 myt "><button type="button" class="btn btn-Regresar"><mat-icon style="width: 50%;">arrow_back</mat-icon><a (click)="regresar()">Regresar</a></button></div>
+        </div>
+    </div>
+  </div>

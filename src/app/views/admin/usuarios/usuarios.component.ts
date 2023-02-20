@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AndService } from 'src/app/services/api/and.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-usuarios',
@@ -40,13 +41,28 @@ export class UsuariosComponent implements OnInit {
 
   //Metodo para crear un usuario
   crearUsuario() {
-    this.andService.crearUsuario(this.usuarioData).subscribe(
-      (data) => {
-        this.ngOnInit();
-        this.modal.dismissAll();
-      },
-      (error) => {
-        console.log(error);
+    Swal.fire({
+      icon: 'question',
+      title: "Crear Orden",
+      text: "¿Desea Crear la Orden?",
+      showCancelButton: true,
+      confirmButtonColor: '#3CC3C8',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Crear',
+      cancelButtonText: 'Cancelar'
+    }).then(
+      (e) => {
+        if (e.isConfirmed) {
+          this.andService.crearUsuario(this.usuarioData).subscribe(
+            (data) => {
+              this.ngOnInit();
+              this.modal.dismissAll();
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
+        }
       }
     );
   }

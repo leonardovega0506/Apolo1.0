@@ -7,17 +7,20 @@ import { LoginService } from '../../login/login.service';
   providedIn: 'root'
 })
 export class AdminGuard implements CanActivate {
+  //Constructor
+  constructor(private login: LoginService, private router: Router) { }
 
-  constructor(private login:LoginService,private router:Router){}
 
+  //Metodo del guard Administrador
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if(this.login.isLoggedIn() && this.login.getUserRoles() == 'ROLE_ADMIN'){
+    //Verificacion
+    if (this.login.isLoggedIn() && this.login.getUserRoles() == 'ROLE_ADMIN') {
       return true;
     }
     this.router.navigate(['login']);
     return false;
   }
-  
+
 }

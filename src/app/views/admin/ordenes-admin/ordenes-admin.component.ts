@@ -39,23 +39,33 @@ export class OrdenesAdminComponent implements OnInit {
 
   //Metodo para buscar orden por numero de Entrada
   buscarOrder() {
-    this.andService.obtenerOrdenByDocEntry(this.ordenData.docEntry).subscribe(
-      (data: any) => {
-        Swal.fire("Ordenes", "Exito al Buscar la orden", "success").then(
-          (e) => {
-            this.orden = data;
-            this.modal.dismissAll();
-            this.ngOnInit();
-          }
-        );
+    Swal.fire({
+      icon: 'question',
+      title: "Buscar Orden",
+      text: "¿Desea Buscar la Orden?",
+      showCancelButton: true,
+      confirmButtonColor: '#3CC3C8',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Buscar',
+      cancelButtonText: 'Cancelar'
+    }).then(
+      (e) => {
+        if (e.isConfirmed) {
+          this.andService.obtenerOrdenByDocEntry(this.ordenData.docEntry).subscribe(
+            (data: any) => {
 
-      },
-      (error) => {
-        console.log(error);
-        Swal.fire("Error", "Error al Buscar la orden, intente de nuevo", "error");
-        this.modal.dismissAll();
-      }
-    )
+              Swal.fire('La Orden fue traida correctamente', 'success');
+              this.orden = data;
+              this.modal.dismissAll();
+              this.ngOnInit();
+            },
+            (error) => {
+              Swal.fire("Error", "Error al bucsar la orden", "error");
+            }
+          )//Cerrar subscribe 
+        }//Cerra If
+      });//Cerrar then
+
   }
 
   //Metodo para abrir la ventana modal de crear orden
@@ -69,22 +79,38 @@ export class OrdenesAdminComponent implements OnInit {
 
   //Metodo para crear la orden
   crearOrden() {
-    this.andService.crearOrden(this.ordenData).subscribe(
-      (data: any) => {
-        Swal.fire("Ordenes", "Exito al crear la orden", "success").then(
-          (e) => {
-            this.ngOnInit();
-            this.modal.dismissAll();
-          }
-        );
+    Swal.fire({
+      icon: 'question',
+      title: "Crear Orden",
+      text: "¿Desea Crear la Orden?",
+      showCancelButton: true,
+      confirmButtonColor: '#3CC3C8',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Crear',
+      cancelButtonText: 'Cancelar'
+    }).then(
+      (e) => {
+        if (e.isConfirmed) {
+          this.andService.crearOrden(this.ordenData).subscribe(
+            (data: any) => {
+              Swal.fire("Ordenes", "Exito al crear la orden", "success").then(
+                (e) => {
+                  this.ngOnInit();
+                  this.modal.dismissAll();
+                }
+              );
 
-      },
-      (error) => {
-        Swal.fire("Error", "Error al cerar orden", "error");
-        console.log(error);
-        this.modal.dismissAll();
+            },
+            (error) => {
+              Swal.fire("Error", "Error al cerar orden", "error");
+              console.log(error);
+              this.modal.dismissAll();
+            }
+          );
+        }
       }
     );
+
   }
 
   //Metodo para mandar la ruta de detalles

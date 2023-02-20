@@ -1,74 +1,98 @@
-<div class="container">
-    <br>
-    <br>
-    <br>
-    <br>
-    <div>
-      <button type="button" class="btn btn-success" (click)="open(contenido)">Crear Registro</button>
-    </div>
-    <br>
-    <br>
-    <div class="row">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Estatus</th>
-            <th scope="col">Fecha Llegada</th>
-            <th scope="col">Hora Llegada</th>
-            <th scope="col">Fecha Recibo M</th>
-            <th scope="col">Hora Recibo M</th>
-            <th scope="col">Fecha Recibo L</th>
-            <th scope="col">Hora Recibo L</th>
-            <th scope="col">Accion</th>
-          </tr>
-        </thead>
-        <tbody *ngFor="let registro of registros">
-          <tr *ngIf="registro.estatus == 'Llegada a Recibo' || registro.estatus == 'Muestra Liberada' || registro.estatus == 'Mercancia Liberada en Recibo' || registro.estatus == 'Llegada a Recibo, Con Orden'">
-            <td>{{registro.idRegistro}}</td>
-            <td>{{registro.estatus}}</td>
-            <td>{{registro.dateReciboOCLlegada}}</td>
-            <td>{{registro.timeReciboOCLlegada}}</td>
-            <td>{{registro.dateReciboMuestraM}}</td>
-            <td>{{registro.timeReciboMuestraM}}</td>
-            <td>{{registro.dateReciboL}}</td>
-            <td>{{registro.timeReciboL}}</td>
-            <td><button type="button" [routerLink]="'/recibo/acciones-recibo/'+registro.idRegistro" class="btn btn-warning">Acciones</button></td>
-          </tr>
-        </tbody>
-      </table>
+<!--Encabezado principal-->
+<section class="intro">
+  <div class="bg-image h-100" style="background-color: transparent;">
+    <div class="mask d-flex align-items-center h-100">
+      <div class="container">
+        <br><br>
+        <!--Titulo-->
+        <h2>
+          <mat-icon>access_time</mat-icon>Registros
+        </h2>
+        <br>
+        <br>
+        <!--Agregar Registro-->
+        <a class="btn btnAgregar btn-md mx-auto" (click)="open(contenido)">
+          <mat-icon style="width: 80%;">update</mat-icon>
+          <span>Crear Registro</span>
+        </a>
+        <br><br>
+        <!--Inicio de la Tabla-->
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body p-0">
+                <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true"
+                  style="position: relative; height: 700px">
+                  <table class="table table-striped mb-0">
+                    <!--Encabezado-->
+                    <thead style="background-color: #634A97; color: #f5f7fa;">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Estatus</th>
+                        <th scope="col">F Llegada</th>
+                        <th scope="col">H Llegada</th>
+                        <th scope="col">F Recibo M</th>
+                        <th scope="col">H Recibo M</th>
+                        <th scope="col">F Recibo L</th>
+                        <th scope="col">H Recibo L</th>
+                        <th scope="col">Accion</th>
+                      </tr>
+                    </thead>
+                    <!--Cuerpo-->
+                    <tbody *ngFor="let registro of registros">
+                      <tr
+                        *ngIf="registro.estatus == 'Llegada a Recibo'  || registro.estatus == 'Mercancia Liberada en Recibo' || registro.estatus == 'Llegada a Recibo, Con Orden'">
+                        <td>{{registro.idRegistro}}</td>
+                        <td>{{registro.estatus}}</td>
+                        <td>{{registro.dateReciboOCLlegada}}</td>
+                        <td>{{registro.timeReciboOCLlegada}}</td>
+                        <td>{{registro.dateReciboMuestraM}}</td>
+                        <td>{{registro.timeReciboMuestraM}}</td>
+                        <td>{{registro.dateReciboL}}</td>
+                        <td>{{registro.timeReciboL}}</td>
+                        <td><button type="button" [routerLink]="'/recibo/acciones-recibo/'+registro.idRegistro"
+                          mat-raised-button class="btnDetalles">Acciones</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Fin Tabla-->
+      </div>
     </div>
   </div>
-  
-  
-  
-  <!--Modal Crear Registro-->
-  <ng-template #contenido let-modal>
-    <form (ngSubmit)="generarRegistro()">
-    <div class="modal-header">
-        <h4 class="modal-title">Crear Registro</h4>
-        <button class="btn close" aria-label="close" type="button" (click)="modal.dismiss()">
-            <span aria-hidden="true">&times;</span>
-        </button>
+</section>
+
+<!--Modal Crear Registro-->
+<ng-template #contenido let-modal>
+  <form (ngSubmit)="generarRegistro()">
+    <!--Cabecera-->
+    <div class="modal-header fondo-cabecera">
+      <h4 class="modal-title">Crear Registro</h4>
+      <button class="btn close" aria-label="close" type="button" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
-    <div class="modal-body">
-  
+    <!--Cuerpo-->
+    <div class="modal-body fondo-modal">
       <p>¿Cuenta con numero de Orden?</p>
       <p>
         <input type="radio" name="verificacion" value="Si" id="positivo" (click)="showData()">Sí
         <input type="radio" name="verificacion" value="No" id="negativo" (click)="hideData()">No
       </p>
       <div *ngIf="verificacion == true">
-        <input type="text" [(ngModel)]="numeroEntrada" name="numeroEntrada" placeholder="Numero de Entrada" class="form-control mr-sm-2">
-      </div> 
+        <input type="text" [(ngModel)]="numeroEntrada" name="numeroEntrada" placeholder="Numero de Entrada"
+          class="form-control mr-sm-2">
+      </div>
     </div>
-    
+    <!--Footer-->
     <div class="modal-footer">
-        <button type="submit" class="btn btn-success">Generar</button>
-        <button type="button" class="btn btn-warning" (click)="modal.close()">Cerrar</button>
+      <button type="submit" class="btn btnAgregar">Generar</button>
+      <button type="button" class="btn btnDetalles btnCerrar" (click)="modal.close()">Cerrar</button>
     </div>
-    </form>
-  </ng-template>
-  <!--/Modal Crear Registro-->
-  
-  
+  </form>
+</ng-template>
+<!--/Modal Crear Registro-->

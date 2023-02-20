@@ -1,0 +1,59 @@
+.btnAgregar {
+    background-color: #634A97;
+    color: #fff;
+}
+.btnAgregar:hover{
+    background-color: #3CC3C8;
+    color: #fff;
+  }
+  .btnDetalles{
+    background-color: #FF5078;
+    color:  #fff;
+  }
+  .btnDetalles:hover{
+    background-color: #FF5078;
+    color: #fff;
+  }
+  .btnCerrar:hover{
+    background-color: lightgrey;
+    color: #000;
+  }
+
+
+table td,
+table th {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+thead th {
+  color: #fff;
+}
+
+.card {
+  border-radius: .5rem;
+}
+
+.table-scroll {
+  border-radius: .5rem;
+}
+
+.table-scroll table thead th {
+  font-size: 1rem;
+}
+thead {
+  top: 0;
+  position: sticky;
+}
+.fondo-modal{
+  height: 30vh;
+  background-size: cover;
+  width: 100%;
+  padding-top: 50px;
+  background:url(/assets/bg-pattern.png);
+}
+.fondo-cabecera{
+  background-color: #634A97;
+  color: #fff;
+}

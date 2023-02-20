@@ -1,38 +1,60 @@
-<div class="container">
-    <br>
-    <br>
-    <br>
-    <br>
-
-    <div class="row">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Estatus</th>
-            <th scope="col">Fecha Compra M</th>
-            <th scope="col">Hora Compras M</th>
-            <th scope="col">Fecha Muestra F</th>
-            <th scope="col">Hora Muestra F</th>
-            <th scope="col">Fecha Compra L</th>
-            <th scope="col">Hora Compra L</th>
-            <th scope="col">Accion</th>
-          </tr>
-        </thead>
-        <tbody *ngFor="let registro of registros">
-          <tr *ngIf="registro.estatus == 'Muestra a Compras' || registro.estatus == 'Muestra a Foto' || registro.estatus == 'Foto Tomada'">
-            <td>{{registro.idRegistro}}</td>
-            <td>{{registro.estatus}}</td>
-            <td>{{registro.dateReciboMuestraM}}</td>
-            <td>{{registro.timeReciboMuestraM}}</td>
-            <td>{{registro.dateCompraMuestraF}}</td>
-            <td>{{registro.timeCompraMuestraF}}</td>
-            <td>{{registro.dateCompraMuestraL}}</td>
-            <td>{{registro.timeCompraMuestraL}}</td>
-            <td><button type="button" (click)="accionesCompras(registro.idRegistro)" class="btn btn-warning">Acciones</button></td>
-          </tr>
-        </tbody>
-      </table>
+  <!--Encabezado principal-->
+  <section class="intro">
+    <div class="bg-image h-100" style="background-color: transparent;">
+      <div class="mask d-flex align-items-center h-100">
+        <div class="container">
+          <br><br>
+          <!--Titulo-->
+          <h2>
+            <mat-icon>access_time</mat-icon>Registros
+          </h2>
+          <br>
+          <br>
+          <!--Inicio de la Tabla-->
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body p-0">
+                  <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true"
+                    style="position: relative; height: 700px">
+                    <table class="table table-striped mb-0">
+                      <thead style="background-color: #634A97; color: #f5f7fa;">
+                        <tr>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Estatus</th>
+                          <th scope="col">F Compra M</th>
+                          <th scope="col">H Compras M</th>
+                          <th scope="col">F Muestra F</th>
+                          <th scope="col">H Muestra F</th>
+                          <th scope="col">F Compra L</th>
+                          <th scope="col">H Compra L</th>
+                          <th scope="col">Accion</th>
+                        </tr>
+                      </thead>
+                      <tbody *ngFor="let registro of registros">
+                        <tr
+                          *ngIf="registro.estatus == 'Muestra a Compras' || registro.estatus == 'Muestra a Foto' || registro.estatus == 'Foto Tomada'  || registro.estatus == 'Muestra Liberada'">
+                          <td>{{registro.idRegistro}}</td>
+                          <td>{{registro.estatus}}</td>
+                          <td>{{registro.dateReciboMuestraM}}</td>
+                          <td>{{registro.timeReciboMuestraM}}</td>
+                          <td>{{registro.dateCompraMuestraF}}</td>
+                          <td>{{registro.timeCompraMuestraF}}</td>
+                          <td>{{registro.dateCompraMuestraL}}</td>
+                          <td>{{registro.timeCompraMuestraL}}</td>
+                          <td><button type="button" (click)="accionesCompras(registro.idRegistro)" mat-raised-button
+                              class="btnDetalles">Acciones</button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Fin Tabla-->
+        </div>
+      </div>
     </div>
-  </div>
-  
+  </section>
