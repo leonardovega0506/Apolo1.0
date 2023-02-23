@@ -57,3 +57,13 @@ thead {
   background-color: #634A97;
   color: #fff;
 }
+.btnRegresar{
+  background-color: #3CC3C8;
+  color: #fff;
+  text-align: center;
+}
+.btnRegresar:hover{
+  background-color: #634A97;
+  color: #fff;
+  text-align: center;
+}

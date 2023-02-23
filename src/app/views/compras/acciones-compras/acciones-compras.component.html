@@ -13,7 +13,13 @@
       Mandar Muestra a Foto</button>
   </div>
   <div *ngIf="registro?.estatus == 'Muestra Liberada'">
-    <button mat-raised-button class="btnAgregar" (click)="generarAccionCompraMF(registro?.idRegistro)">Registrar Tiempo
+    <button mat-raised-button class="btnAgregar" (click)="generarAccionReciboL(registro?.idRegistro)">Registrar Tiempo
       Liberar Orden</button>
+  </div>
+  <br>
+  <div>
+    <button routerLink="/compras/registros" class="btn btnRegresar">
+      <mat-icon style="width: 50%;">arrow_back</mat-icon>Regresar
+    </button>
   </div>
 </div>

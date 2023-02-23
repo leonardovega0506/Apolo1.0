@@ -82,10 +82,14 @@ export class OrdenesComprasComponent implements OnInit {
 
   //Metodo para crear una orden
   crearOrden() {
+    if(this.ordenData.cardName == "" || this.ordenData.docDate == "" || this.ordenData.docEntry == ""|| this.ordenData.docNum == "" ||this.ordenData.docTime == "" ||this.ordenData.docTotal == ""){
+      Swal.fire("Error","Por favor rellene todos los campos","warning");
+    }
+    else{
     Swal.fire({
       icon: 'question',
       title: "Crear Orden",
-      text: "¿Desea Crear La Orden?",
+      text: "¿Desea Crear La Orden?\nRecuerda que este proceso no va a SAP tienes que crearlo tambien ahí",
       showCancelButton: true,
       confirmButtonColor: '#3CC3C8',
       cancelButtonColor: '#d33',
@@ -107,6 +111,7 @@ export class OrdenesComprasComponent implements OnInit {
         }
       }
     );
+    }
 
   }
 

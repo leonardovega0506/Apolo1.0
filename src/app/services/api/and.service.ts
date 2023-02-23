@@ -117,7 +117,7 @@ export class AndService {
 
   //Generar el Tiempo para Orden Liberada
   public generarTiempoReciboL(idRegistro: any) {
-    return this.http.put(this.baseAnd + "/registros/recibo-l" + idRegistro, idRegistro);
+    return this.http.put(this.baseAnd + "/registros/recibo-l/" + idRegistro, idRegistro);
   }
 
   //Generar el tiempo para Liberar Muestra

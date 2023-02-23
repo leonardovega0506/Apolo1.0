@@ -39,6 +39,9 @@ export class ItemsFotoComponent implements OnInit{
 
   //Metodo para buscar el producto por itemCode
   buscarItemCode(){
+    if(this.itemCodeBuscar == ""){
+      Swal.fire("Error","Favor de verificar el codigo","warning");
+    }
     Swal.fire({
       icon: 'question',
       title: "Buscar Orden",

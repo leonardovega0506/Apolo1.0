@@ -79,7 +79,7 @@
               <!--Mercancia Liberada en Recibo-->
               <div class="timeline-row" *ngIf="registro?.dateReciboL">
                 <div class="timeline-time">
-                  {{registro?.timeReciboL}}<small>{{registro?.dateReciboL}}</small>
+                  {{registro?.timeReciboL.substring(0,5)}}<small>{{registro?.dateReciboL}}</small>
                 </div>
                 <div class="timeline-dot teal-bg"></div>
                 <div class="timeline-content teal">

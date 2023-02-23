@@ -119,7 +119,7 @@ li {
 }
 .btn-Regresar:hover{
     border: solid 1px #FF5078;
-    color: #fff;
+    color: #000;
 }
 .fondo-modal{
     height: 30vh;

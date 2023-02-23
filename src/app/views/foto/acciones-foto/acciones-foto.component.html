@@ -5,10 +5,13 @@
     <h6>Estatus</h6>
     <p>{{registro?.estatus}}</p>
     <div *ngIf="registro?.estatus == 'Pendiente de Foto'">
-        <button mat-raised-button class="btnAgregar" (click)="generarAccion(registro?.idRegistro)">Registrar Tiempo Almacen</button>
+        <button mat-raised-button class="btnAgregar" (click)="generarAccion(registro?.idRegistro)">Registrar Tiempo Foto Tomada</button>
     </div>
-    <div *ngIf="registro?.estatus == 'En Almacen'">
+    <div *ngIf="registro?.estatus == 'Foto Tomada'">
         <p>Ya se ha terminado el Proceso</p>
     </div>
-
+    <br>
+    <button routerLink="/foto/registros" class="btn btnRegresar">
+      <mat-icon style="width: 50%;">arrow_back</mat-icon>Regresar
+    </button>
 </div>

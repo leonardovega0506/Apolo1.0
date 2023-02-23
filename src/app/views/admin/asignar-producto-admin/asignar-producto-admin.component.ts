@@ -116,6 +116,10 @@ export class AsignarProductoAdminComponent implements OnInit {
 
   //Metodo para Buscar un item por itemCode
   buscarItemCode() {
+    if(this.itemCode == "" || this.itemCode == null || this.itemCode == 0){
+      Swal.fire("Error","Por favor ingrese el dato a buscar","warning");
+    }
+    else{
     Swal.fire({
       icon: 'question',
       title: "Buscar Producto",
@@ -142,7 +146,7 @@ export class AsignarProductoAdminComponent implements OnInit {
         }
       }
     )
-
+    }
   }
 
   //Metodo para abrir el div del detalle de la orden
@@ -152,6 +156,9 @@ export class AsignarProductoAdminComponent implements OnInit {
 
   //Metodo para buscar la orden
   buscarOrder() {
+    if(this.ordenData.docNum == ""){
+      Swal.fire("Error","Por favor verifica haber escrito algo","warning");
+    }
     Swal.fire({
       icon: 'question',
       title: "Buscar Orden",

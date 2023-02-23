@@ -55,7 +55,7 @@
   <ng-template #usuarioNuevo let-modal>
     <form (ngSubmit)="crearUsuario()">
       <div class="modal-header fondo-cabecera">
-        <h4 class="modal-title">Titulo Modal</h4>
+        <h4 class="modal-title">Crear Usuario</h4>
         <button class="btn close" aria-label="close" type="button" (click)="modal.dismiss()">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -65,24 +65,24 @@
         <div class="col">
           <label for="ejemplo">Nombre de Usuario</label>
           <input type="text" [(ngModel)]="usuarioData.nombre" class="form-control" name="nombre"
-            placeholder="Nombre de Usuario">
+            placeholder="Nombre de Usuario" required>
         </div>
         <!--Usuario-->
         <div class="col">
           <label for="ejemplo">Usuario</label>
           <input type="text" [(ngModel)]="usuarioData.username" class="form-control" name="username"
-            placeholder="usuario">
+            placeholder="usuario" required>
         </div>
         <!--Contraseña-->
         <div class="col">
           <label for="ejemplo">Contraseña</label>
           <input type="password" [(ngModel)]="usuarioData.password" class="form-control" name="docDate"
-            placeholder="password">
+            placeholder="password" required>
         </div>
         <!--Area-->
         <div class="col">
           <label for="area">Area</label>
-          <select class="form-control" name="area" id="area" [(ngModel)]="usuarioData.area">
+          <select class="form-control" name="area" id="area" [(ngModel)]="usuarioData.area" required="true">
             <option>ADMIN</option>
             <option>ALMACEN</option>
             <option>COMPRAS</option>

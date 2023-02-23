@@ -1,44 +1,62 @@
-<div class="container">
-    <h2>Detalles</h2>
-    <div class="row">
-        <div class="col-md-3">
-            <h6>Codigo del Articulo</h6>
-            <p>{{item?.itemCode}}</p>
-        </div>
-        <div class="col-md-3">
-            <h6>Descripcion del Articulo</h6>
-            <p>{{item?.itemName}}</p>
-        </div>
-
-    </div>
-    <img src="{{cadenaImg}}" width="300">
-    <button (click)="regresar()">Regresar</button>
-    <button (click)="openEditar(itemEdit)">Editar</button>
+<!--Detalles del producto-->
+<div class="container py-4 my-4 mx-auto d-flex flex-column">
+  <div class="header">
+      <div class="row r1">
+        <!--Descripcion-->
+          <div class="col-md-9 abc">
+              <h1>{{item?.itemName}}</h1>
+          </div>
+          <div class="col-md-3 text-right pqr"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+      </div>
+  </div>
+  <!--Datos-->
+  <div class="container-body mt-4">
+      <div class="row r3">
+          <div class="col-md-5 p-0 klo">
+              <ul>
+                  <li><h6>Codigo del Articulo:</h6> {{item?.itemCode}}</li>
+              </ul>
+          </div>
+          <!--Imagen-->
+          <div class="col-md-7"> <img src="{{cadenaImg}}" width="90%" height="95%"> </div>
+      </div>
+  </div>
+  <!--Botones-->
+  <div class="footer d-flex flex-column mt-5">
+      <div class="row r4">
+          <div class="col-md-2 myt "><button type="button" class="btn btn-Regresar" (click)="regresar()"><mat-icon style="width: 50%;">arrow_back</mat-icon>Regresar</button></div>
+          <div class="col-md-2 myt "><button type="button" class="btn btn-outlineEditar" (click)="openEditar(itemEdit)"><mat-icon style="width: 50%;">edit</mat-icon>Editar</button></div>
+      </div>
+  </div>
 </div>
 <!--Ventana Modal Crear Orden-->
 <ng-template #itemEdit let-modal>
-    <form (ngSubmit)="actualizarProducto()">
-      <div class="modal-header">
-        <h4 class="modal-title">Titulo Modal</h4>
-        <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
-          <span aria-hidden="true">&times;</span>
-        </button>
+  <form (ngSubmit)="actualizarProducto()">
+    <!--Cabecero-->
+    <div class="modal-header fondo-cabecera">
+      <h4 class="modal-title">Editar Producto</h4>
+      <button class="btn close" aria-label="close" type="button"  (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <!--Cuerpo-->
+    <div class="modal-body ">
+      <div class="col">
+        <label for="ejemplo">Codigo del Producto</label>
+        <input value="{{item?.itemCode}}" type="text" [(ngModel)]="itemData.itemCode" class="form-control" name="docEntry"
+          placeholder="Codigo de Producto">
       </div>
-      <div class="modal-body">
-        <div class="col">
-          <label for="ejemplo">Codigo del Producto</label>
-          <input value="{{item?.itemCode}}" type="text" [(ngModel)]="itemData.itemCode" class="form-control" name="docEntry"
-            placeholder="Codigo de Producto">
-        </div>
-        <div class="col">
-          <label for="ejemplo">Descripcion del Producto</label>
-          <input type="text" value="{{item?.itemName}}" [(ngModel)]="itemData.itemName" class="form-control" name="docNum"
-            placeholder="Descripcion del producto">
-        </div>
+      <div class="col">
+        <label for="ejemplo">Descripcion del Producto</label>
+        <input type="text" value="{{item?.itemName}}" [(ngModel)]="itemData.itemName" class="form-control" name="docNum"
+          placeholder="Descripcion del producto">
       </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-success">Guardar Orden</button>
-        <button type="button" class="btn btn-danger" (click)="modal.close()">Cerrar</button>
-      </div>
-    </form>
-  </ng-template>
+    </div>
+    <!--Pie-->
+    <div class="modal-footer">
+      <button type="submit" class="btn btnAgregar">Guardar Orden</button>
+      <button type="button" class="btn btnDetalles btnCerrar" (click)="modal.close()">Cerrar</button>
+    </div>
+  </form>
+</ng-template>
+

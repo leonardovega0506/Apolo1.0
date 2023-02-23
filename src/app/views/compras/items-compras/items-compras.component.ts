@@ -33,6 +33,9 @@ export class ItemsComprasComponent implements OnInit {
 
   //Metodo para buscar por codigo
   buscarItemCode() {
+    if(this.itemCodeBuscar == ""){
+      Swal.fire("Favor de verificar que haya escrito el codigo a buscar","warning");
+    }
     Swal.fire({
       icon: 'question',
       title: "Buscar Producto",

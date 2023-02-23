@@ -41,10 +41,14 @@ export class UsuariosComponent implements OnInit {
 
   //Metodo para crear un usuario
   crearUsuario() {
+    if(this.usuarioData.nombre == null || this.usuarioData.username == null || this.usuarioData.area == null || this.usuarioData.password == null || this.usuarioData.nombre == "" || this.usuarioData.area == "" || this.usuarioData.password == "" || this.usuarioData.username == ""){
+      Swal.fire("Error","Por favor complete los campos","warning");
+    }
+    else{
     Swal.fire({
       icon: 'question',
-      title: "Crear Orden",
-      text: "¿Desea Crear la Orden?",
+      title: "Crear Usuario",
+      text: "¿Desea Crear un usuario?",
       showCancelButton: true,
       confirmButtonColor: '#3CC3C8',
       cancelButtonColor: '#d33',
@@ -66,4 +70,5 @@ export class UsuariosComponent implements OnInit {
       }
     );
   }
+}
 }

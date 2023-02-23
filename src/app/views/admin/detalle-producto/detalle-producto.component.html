@@ -24,8 +24,8 @@
   <!--Botones-->
   <div class="footer d-flex flex-column mt-5">
       <div class="row r4">
-          <div class="col-md-2 myt "><button type="button" class="btn btn-Regresar"><mat-icon style="width: 50%;">arrow_back</mat-icon><a (click)="regresar()">Regresar</a></button></div>
-          <div class="col-md-2 myt "><button type="button" class="btn btn-outlineEditar"><mat-icon style="width: 50%;">edit</mat-icon><a (click)="openEditar(itemEdit)">Editar</a></button></div>
+          <div class="col-md-2 myt "><button type="button" class="btn btn-Regresar" (click)="regresar()"><mat-icon style="width: 50%;">arrow_back</mat-icon>Regresar</button></div>
+          <div class="col-md-2 myt "><button type="button" class="btn btn-outlineEditar" (click)="openEditar(itemEdit)"><mat-icon style="width: 50%;">edit</mat-icon>Editar</button></div>
       </div>
   </div>
 </div>
@@ -34,7 +34,7 @@
     <form (ngSubmit)="actualizarProducto()">
       <!--Cabecero-->
       <div class="modal-header fondo-cabecera">
-        <h4 class="modal-title">Titulo Modal</h4>
+        <h4 class="modal-title">Editar Producto</h4>
         <button class="btn close" aria-label="close" type="button"  (click)="modal.dismiss()">
           <span aria-hidden="true">&times;</span>
         </button>

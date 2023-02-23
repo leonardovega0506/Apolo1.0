@@ -1,16 +1,24 @@
 <div class="container">
-    <h1>Detalle de Registros</h1>
-    <h6>Orden de Compra: </h6>
-    <p>{{registro?.ordenCompra.docNum}}</p>
-    <h6>Estatus</h6>
-    <p>{{registro?.estatus}}</p>
-    <div *ngIf="registro?.estatus == 'Llegada a Recibo'">
-        <button mat-raised-button class="btnAgregar" (click)="generarAccionCompraMM(registro?.idRegistro)">Registrar Tiempo Mandar Muestra a compras</button>
-    </div>
-    <div *ngIf="registro?.estatus == 'Mercancia Liberada en Recibo'">
-        <button mat-raised-button class="btnAgregar" (click)="generarAccionTransito(registro?.idRegistro)">Registrar Tiempo Mandar a Transito</button>
-    </div>
-    <div *ngIf="registro?.estatus == 'Llegada a Recibo, Con Orden'">
-        <button mat-raised-button class="btnAgregar" (click)="generarAccionTransito(registro?.idRegistro)">Registrar Tiempo Mandar a Transito</button>
-    </div>
+  <h1>Detalle de Registros</h1>
+  <h6>Orden de Compra: </h6>
+  <p>{{registro?.ordenCompra.docNum}}</p>
+  <h6>Estatus</h6>
+  <p>{{registro?.estatus}}</p>
+  <div *ngIf="registro?.estatus == 'Llegada a Recibo'">
+    <button mat-raised-button class="btnAgregar" (click)="generarAccionCompraMM(registro?.idRegistro)">Registrar Tiempo
+      Mandar Muestra a compras</button>
+  </div>
+  <div *ngIf="registro?.estatus == 'Mercancia Liberada en Recibo'">
+    <button mat-raised-button class="btnAgregar" (click)="generarAccionTransito(registro?.idRegistro)">Registrar Tiempo
+      Mandar a Transito</button>
+  </div>
+  <div *ngIf="registro?.estatus == 'Llegada a Recibo, Con Orden'">
+    <button mat-raised-button class="btn btnAgregar" (click)="generarAccionTransito(registro?.idRegistro)">Registrar
+      Tiempo Mandar a Transito</button>
+  </div>
+  <br>
+  <button routerLink="/recibo/registros" class="btn btnRegresar">
+    <mat-icon style="width: 50%;">arrow_back</mat-icon>Regresar
+  </button>
+
 </div>
